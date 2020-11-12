@@ -15,9 +15,14 @@ export const WithProps = () => {
     getOptions<ButtonProps['size'][]>(['small', 'medium', 'large']),
     'medium',
   );
+  const color = select(
+    'Color',
+    getOptions<ButtonProps['color'][]>(['primary', 'secondary', 'success', 'danger']),
+    'primary',
+  );
   const children = text('Children', 'Button');
   return (
-    <Button onClick={action('onClick')} size={size}>
+    <Button onClick={action('onClick')} size={size} color={color}>
       {children}
     </Button>
   );

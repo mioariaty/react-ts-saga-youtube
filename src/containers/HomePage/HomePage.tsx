@@ -1,6 +1,7 @@
 import React, { FC } from 'react';
 import GridGeneric from 'components/GridGeneric/GridGeneric';
 import { useSelector } from 'react-redux';
+import { Button, LineAwesome, Text, View } from 'core';
 import { todolistSelector } from './selectors';
 import { useGetTodolistRequest } from './actions/actionTodolist';
 
@@ -39,6 +40,18 @@ const HomePage: FC = () => {
           return <div>{item.name}</div>;
         }}
       />
+      <View backgroundColor="gray1" tachyons={['flex', 'flex-row', 'justify-between', 'pa4', 'relative']}>
+        <View>
+          <Text tagName="h2" color="dark1">
+            Day la title
+          </Text>
+          <Text color="dark3">Lorem ipsum dolor sit amet consectetur adipisicing elit. Eligendi, earum!</Text>
+        </View>
+        <Button backgroundColor="facebook" radius="pill" size="extra-small" color="light" nightModeBlacklist="all">
+          <LineAwesome name="facebook" tachyons="mr1" />
+          Facebook
+        </Button>
+      </View>
     </div>
   );
 };

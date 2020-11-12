@@ -1,0 +1,19 @@
+*,
+*:after,
+*:before {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Poppins',
+    sans-serif;
+  font-family: 16px;
+  font-weight: 400;
+}
+
+.main {
+  margin-left: 256px;
+  padding: 24px 48px;
+}
