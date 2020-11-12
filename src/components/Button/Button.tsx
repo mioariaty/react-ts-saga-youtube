@@ -17,10 +17,12 @@ export interface ButtonProps {
   style?: CSSProperties;
   /** Sự kiện click */
   onClick?: DOMAttributes<HTMLElement>['onClick'];
+  /** Thuộc tính màu của button */
+  color?: 'primary' | 'secondary' | 'danger' | 'success';
 }
 
-const Button: FC<ButtonProps> = ({ children, href, style, className, type = 'button', onClick, size = 'medium' }) => {
-  const generalProps = { style, className: classNames(styles.container, className, styles[size]) };
+const Button: FC<ButtonProps> = ({ children, href, style, className, type = 'button', onClick, size = 'medium', color = 'primary' }) => {
+  const generalProps = { style, className: classNames(styles.container, className, styles[size], styles[color]) };
   if (!!href) {
     return (
       <a {...generalProps} href={href} onClick={onClick}>

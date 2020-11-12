@@ -1,19 +1,97 @@
 .container {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-selecto: none;
+  user-select: none;
+  cursor: pointer;
+  text-align: center;
+  vertical-align: middle;
+  display: inline-block;
   border: 0;
-  box-shadow: none;
-  padding: 10px 15px;
-  background-color: #f00;
+  outline: 0;
+  font-weight: 400;
   color: #fff;
+  transition: all 250ms ease;
+  margin: 0.1rem 0.5rem;
+
+}
+
+.container:disabled,
+.container[disabled] {
+  background-color: #e1e1e3;
+  color: #797a88;
+}
+
+
+.primary {
+  background-color: #0f6fff;
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.12), 0 2px 16px rgba(0, 0, 0, 0.06);
+
+  &:hover {
+    background-color: #0c62e4;
+  }
+
+  &:active {
+    background-color: #0050c8;
+  }
+
+  &:focus {
+    box-shadow: inset 0 0 0 1px #fff, 0 0 0 2px #0f6fff, 0 0 0 6px #e3edfa;
+  }
+}
+
+.secondary {
+  color: #0f6fff;
+  background-color: #f3f8ff;
+
+  &:hover {
+    background-color: #e7f1ff;
+  }
+
+  &:active {
+    background-color: #dbeaff;
+  }
+
+  &:focus {
+    box-shadow: 0 0 0 4px #e3edfa, inset 0 0 0 1px #0f6fff;
+  }
+}
+
+.danger {
+  color: #f16f6f;
+  background-color: #f16f6f33;
+
+  &:hover {
+    background-color: #f16f6f65;
+  }
+
+  &:active {
+    background-color: #f16f6fd8;
+  }
+
+  &:focus {
+    box-shadow: inset 0 0 0 1px #fff,
+      0 0 0 2px #f16f6fd8,
+      0 0 0 6px #f16f6f33;
+  }
+}
+
+.success {
+  background-color: #22eaaa;
+  color: #f5f5f5;
 }
 
 .small {
-  padding: 6px 10px;
+  padding: 8px 20px;
+  font-size: 14px;
 }
 
 .medium {
-  padding: 12px 15px;
+  padding: 12px 24px;
+  font-size: 16px;
 }
 
 .large {
-  padding: 16px 20px;
+  padding: 16px 28px;
+  font-size: 18px;
 }

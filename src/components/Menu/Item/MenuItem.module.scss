@@ -1,0 +1,31 @@
+.container {
+  color: #000000;
+  transition: 0.2s all ease;
+  border-bottom: 1px solid transparent;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+
+// underline
+.nounderline {
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+}
+
+.underline {
+  border-bottom: 1px solid currentColor;
+}
+
+.hover {
+  text-decoration: none;
+
+  &:hover {
+    border-bottom: 1px solid currentColor;
+  }
+}
+
+// active
+.active {
+  border-bottom: 1.25px solid #0f6fff !important;
+}
