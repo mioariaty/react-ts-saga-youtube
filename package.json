@@ -17,7 +17,13 @@
     "release": "yarn test-all && zip -r ${npm_package_name}-build.zip build && release-it \"$1\" && rm ${npm_package_name}-build.zip",
     "storybook": "start-storybook -p 9009 -s public",
     "build-storybook": "build-storybook -s public",
-    "storybook-docs": "start-storybook --docs"
+    "storybook-docs": "start-storybook --docs",
+    "rcg": "rc-generate"
+  },
+  "rc-generate": {
+    "baseUrl": "src",
+    "typescript": true,
+    "reactNative": false
   },
   "lint-staged": {
     "*.{ts,tsx}": [
@@ -55,6 +61,7 @@
     "javascript-time-ago": "^2.3.3",
     "qs": "^6.9.1",
     "ramda": "^0.26.1",
+    "rc-generate": "^0.4.0",
     "react": "^16.12.0",
     "react-dom": "^16.12.0",
     "react-helmet": "^6.1.0",

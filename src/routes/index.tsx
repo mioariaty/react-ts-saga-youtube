@@ -3,7 +3,7 @@ import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import HomePage from 'containers/HomePage/HomePage';
 import AboutPage from 'containers/AboutPage/AboutPage';
 import NotFoundPage from 'containers/NotFoundPage/NotFoundPage';
-// import YoutubePage from 'containers/YoutubePage/YoutubePage';
+import YoutubePage from 'containers/YoutubePage/YoutubePage';
 import Menu from 'components/Menu/Menu';
 
 import SideDrawer from 'components/SideDrawer/SideDrawer';
@@ -23,13 +23,13 @@ export const pages: Page[] = [
     exact: false,
     component: AboutPage,
   },
+  {
+    path: '/youtube',
+    exact: false,
+    component: YoutubePage,
+  },
 ];
-// ,
-//   {
-//     path: '/youtube',
-//     exact: false,
-//     component: YoutubePage,
-//   },
+
 class Routes extends Component<{}, RouteState> {
   state: RouteState = {
     isDrawerOpen: true,

@@ -1,28 +1,53 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
-// import { useGetVideosRequest } from './actions/getVideosAction';
-import watchGetVideos from './sagas/watchGetVideos';
-// import { videoSelector } from './selectors';
+import React, { FC, useEffect } from 'react';
+import { useSelector } from 'react-redux';
+import { View } from 'core';
+import { VideoDocument } from 'models/Videos';
+import YoutubeCard from 'components/Youtube/YoutubeCard/YoutubeCard';
+import Spinner from '../../components/Spinner/Spinner';
+import { videoSelector } from './selectors';
+import { useGetVideosRequest } from './actions/getVideosAction';
 
-const mapState = (state: AppState) => ({
-  videolist: state.videoReducer,
-});
-const mapDispatch = {
-  getAllVideos: watchGetVideos(),
-};
-const connector = connect(mapState, mapDispatch);
+const YoutubePage: FC = () => {
+  const videoList = useSelector(videoSelector);
+  const getVideoListRequest = useGetVideosRequest();
 
-// interface YoutubePageProps extends ConnectedProps<typeof connector> {}
+  useEffect(() => {
+    getVideoListRequest(null);
+    //eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
-class YoutubePage extends Component<{}, {}> {
-  componentDidMount() {}
-  render() {
+  const _onOpenIframeVideo = (id: VideoDocument['id']) => () => {
+    console.log(id);
+  };
+
+  const _renderList = (item: VideoDocument) => {
     return (
-      <>
-        <div>Youtube Page</div>
-      </>
+      <YoutubeCard
+        key={item.id}
+        channel={item.snippet.channelTitle}
+        duration={item.contentDetails.duration}
+        uri={item.snippet.thumbnails.medium.url}
+        title={item.snippet.title}
+        onClick={_onOpenIframeVideo(item.id)}
+      />
     );
-  }
-}
+  };
 
-export default connector(YoutubePage);
+  const renderVideoList = () => {
+    if (videoList.isLoading) {
+      return <Spinner />;
+    }
+    if (videoList.message) {
+      return <p>error</p>;
+    }
+    return (
+      <View gridEqual colMd={4} tagName="div">
+        {videoList.data.map(_renderList)}
+      </View>
+    );
+  };
+
+  return <View tagName="div">{renderVideoList()}</View>;
+};
+
+export default YoutubePage;

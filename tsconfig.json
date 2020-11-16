@@ -27,6 +27,7 @@
     "**/*.js"
   ],
   "include": [
-    "src"
+    "src",
+    "rc-generate.config.js"
   ]
 }

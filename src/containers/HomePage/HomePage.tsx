@@ -8,6 +8,7 @@ import { useGetTodolistRequest } from './actions/actionTodolist';
 const HomePage: FC = () => {
   const todolist = useSelector(todolistSelector);
   const getTodolistRequest = useGetTodolistRequest();
+  console.log(todolist);
 
   const handleGetTodolist = () => {
     getTodolistRequest({ endpoint: 'todolist' });

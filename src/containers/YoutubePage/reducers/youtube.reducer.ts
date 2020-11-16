@@ -1,4 +1,4 @@
-import { VideosModel } from 'models/Videos';
+import { VideoDocument } from 'models/Videos';
 import { ActionTypes, createReducer, handleAction } from 'utils/functions/reduxActions';
 import { getYoutubeVideos } from '../actions/getVideosAction';
 
@@ -6,17 +6,17 @@ type VideoAction = ActionTypes<typeof getYoutubeVideos>;
 
 interface VideoState {
   isLoading: boolean;
-  errorMessage: string;
-  data: VideosModel['items'];
+  message: string;
+  data: VideoDocument[];
 }
 
-const intitialState: VideoState = {
+const initialState: VideoState = {
   data: [],
-  errorMessage: '',
+  message: '',
   isLoading: false,
 };
 
-export const videoReducer = createReducer<VideoState, VideoAction>(intitialState, [
+export const videoReducer = createReducer<VideoState, VideoAction>(initialState, [
   handleAction('@getVideosRequest', ({ state }) => ({
     ...state,
     isLoading: true,
@@ -29,6 +29,6 @@ export const videoReducer = createReducer<VideoState, VideoAction>(intitialState
   handleAction('@getVideosFailure', ({ state, action }) => ({
     ...state,
     isLoading: false,
-    errorMessage: action.payload.message,
+    message: action.payload.message,
   })),
 ]);

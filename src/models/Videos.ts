@@ -25,7 +25,6 @@ export interface VideoThumbnails {
     height: number;
   };
 }
-
 export interface VideoDocument {
   id: string;
   kind: string;
@@ -54,7 +53,31 @@ export interface VideoDocument {
     videoId: string;
   };
 }
-
 export interface VideosModel {
+  pageInfo?: {
+    resultsPerPage: number;
+    totalResults: number;
+  };
   items: VideoDocument[];
+}
+
+export interface VideoParams {
+  key: string;
+  id?: string;
+  part: string;
+  playlistId?: string;
+  maxResults?: number;
+  regionCode?: string;
+}
+
+export interface VideoCardInteface {
+  id: string;
+  thumbnails: VideoThumbnails;
+  title: string;
+  channelTitle: string;
+  duration: string;
+}
+
+export interface SearchParams {
+  q: string;
 }

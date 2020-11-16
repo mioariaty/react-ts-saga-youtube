@@ -7,10 +7,12 @@
 }
 
 body {
-  font-family: 'Poppins',
-    sans-serif;
-  font-family: 16px;
+  font-family: 'Poppins', sans-serif;
+  font-size: 1.6rem;
   font-weight: 400;
+  overflow-y: auto;
+  overflow-x: hidden;
+  background-color: #0f0f0f;
 }
 
 .main {

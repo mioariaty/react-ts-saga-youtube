@@ -35,6 +35,7 @@ export const themeOverrides: ThemeOverrides = {
     dark4: '#DBDADE',
     dark5: '#DBDADE',
   },
+  nightMode: true,
 };
 
 function App() {

@@ -1,0 +1,89 @@
+@import 'styles/abstracts/abstracts.scss';
+
+.container {
+  position: relative;
+  cursor: pointer;
+}
+
+.thumbnailContainer {
+  width: 100%;
+  position: relative;
+  display: block;
+
+  &:before {
+    content: '';
+    display: block;
+    width: 100%;
+    padding-top: 56.25%;
+    position: relative;
+  }
+}
+
+.thumbLink {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  margin-left: auto;
+  margin-right: auto;
+  overflow: hidden;
+  display: block;
+  height: 100%;
+}
+
+.thumbImage {
+  display: block;
+  position: absolute;
+  transform: translateY(-50%);
+  top: 50%;
+  left: 0;
+  width: 100%;
+}
+
+.detail {
+  padding: 1rem;
+}
+
+.avatar {
+  margin-top: 12px;
+  margin-right: 12px;
+  display: inline-block;
+  height: 36px;
+  border-radius: 50%;
+  background-color: transparent;
+  overflow: hidden;
+}
+
+.avatarImage {
+  display: block;
+}
+
+.meta {
+  padding-right: 24px;
+  flex-grow: 1;
+  overflow: hidden;
+}
+
+.title {
+  margin: 8px 0 4px 0;
+  font-weight: 500;
+  font-size: 1.4rem;
+  font-weight: 500;
+  line-height: 2.2rem;
+  max-height: 4.4rem;
+  @include litmitText(2);
+}
+
+.dutation {
+  position: absolute;
+  right: 5px;
+  bottom: 5px;
+  font-size: 1.4rem;
+  padding: 5px;
+  background-color: rgba($color: #000000, $alpha: 0.5);
+}
+
+.channel {
+  @include litmitText(1);
+}
