@@ -52,7 +52,32 @@ export interface VideoDocument {
     projection: string;
     videoId: string;
   };
+  statistics: {
+    commentCount: string;
+    dislikeCount: string;
+    favoriteCount: string;
+    likeCount: string;
+    viewCount: string;
+  };
 }
+
+export interface VideoSearchedDoc {
+  id: {
+    kind: string;
+    videoId: string;
+  };
+  snippet: {
+    channelId: string;
+    channelTitle: string;
+    description: string;
+    liveBroadcastContent: string;
+    publishTime: string;
+    publishedAt: string;
+    title: string;
+    thumbnails: VideoThumbnails;
+  };
+}
+
 export interface VideosModel {
   pageInfo?: {
     resultsPerPage: number;
@@ -60,14 +85,19 @@ export interface VideosModel {
   };
   items: VideoDocument[];
 }
+export interface VideosSearchModel {
+  pageInfo?: {
+    resultsPerPage: number;
+    totalResults: number;
+  };
+  items: VideoSearchedDoc[];
+}
 
 export interface VideoParams {
   key: string;
-  id?: string;
   part: string;
-  playlistId?: string;
   maxResults?: number;
-  regionCode?: string;
+  q: string;
 }
 
 export interface VideoCardInteface {
@@ -79,5 +109,5 @@ export interface VideoCardInteface {
 }
 
 export interface SearchParams {
-  q: string;
+  keyword: string;
 }

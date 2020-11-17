@@ -1,9 +1,10 @@
 import Button from 'components/Button/Button';
 import Input from 'components/Input/Input';
-import React, { CSSProperties, FC } from 'react';
+import React, { CSSProperties, FC, FormEvent, useState } from 'react';
 import { Link } from 'react-router-dom';
 import classNames from 'utils/functions/classNames';
 import * as FaIcons from 'react-icons/fa';
+import { View } from 'core';
 import MenuItem from './Item/MenuItem';
 import styles from './Menu.module.scss';
 
@@ -13,20 +14,33 @@ export interface MenuProps {
   style?: CSSProperties;
   className?: string;
   bgColor: 'dark' | 'light' | 'primary' | 'secondary';
+  onSubmit: (term: string) => void;
+  valueForm?: string;
 }
 
 const Menu: FC<MenuProps> = ({
   style,
   fixed,
   className,
+  onSubmit,
   bgColor = 'light',
   logo = 'https://i.pinimg.com/originals/de/1c/91/de1c91788be0d791135736995109272a.png',
 }) => {
+  const [term, setTerm] = useState('');
+
+  const _handleSubmit = (event: FormEvent) => {
+    event.preventDefault();
+    onSubmit(term);
+  };
+
+  const _handleOnChange = (event: React.FormEvent<HTMLInputElement>) => {
+    setTerm(event.currentTarget.value);
+  };
+
   const isFixed = fixed ? styles.fixed : undefined;
   const combineProps = { style, className: classNames(styles.container, className, isFixed, styles[bgColor]) };
-
   return (
-    <div {...combineProps}>
+    <View tagName="div" backgroundColor="gray1" {...combineProps}>
       <MenuItem className={styles.logo}>
         <FaIcons.FaBars style={{ marginRight: 16 }} />
         <Link to="/youtube" className="no-underline flex-center">
@@ -35,17 +49,19 @@ const Menu: FC<MenuProps> = ({
         </Link>
       </MenuItem>
       <div className={styles.formContainer}>
-        <form>
+        <form onSubmit={_handleSubmit}>
           <div className={styles.formGroup}>
-            <Input sizeInput="small" />
-            <Button size="small">Search</Button>
+            <Input value={term} sizeInput="small" onChange={_handleOnChange} />
+            <Button type="submit" size="small">
+              Search
+            </Button>
           </div>
         </form>
       </div>
       <div className={styles.body}>
         <MenuItem href="#">Login</MenuItem>
       </div>
-    </div>
+    </View>
   );
 };
 export default Menu;

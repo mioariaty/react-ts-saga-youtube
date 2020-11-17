@@ -1,4 +1,4 @@
 {
-  "baseUrl": "https://5abe1d53d4c5900014949e9c.mockapi.io/api/",
+  "baseUrl": "https://www.googleapis.com/youtube/v3/",
   "timeout": 30000
 }

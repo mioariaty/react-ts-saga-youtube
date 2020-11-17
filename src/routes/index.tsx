@@ -4,9 +4,10 @@ import HomePage from 'containers/HomePage/HomePage';
 import AboutPage from 'containers/AboutPage/AboutPage';
 import NotFoundPage from 'containers/NotFoundPage/NotFoundPage';
 import YoutubePage from 'containers/YoutubePage/YoutubePage';
-import Menu from 'components/Menu/Menu';
 
 import SideDrawer from 'components/SideDrawer/SideDrawer';
+import { View } from 'core';
+import YoutubeSearchPage from 'containers/YoutubePage/YoutubeSearchPage';
 import { Page } from './types';
 interface RouteState {
   isDrawerOpen: boolean;
@@ -28,6 +29,11 @@ export const pages: Page[] = [
     exact: false,
     component: YoutubePage,
   },
+  {
+    path: '/search',
+    exact: true,
+    component: YoutubeSearchPage,
+  },
 ];
 
 class Routes extends Component<{}, RouteState> {
@@ -45,16 +51,15 @@ class Routes extends Component<{}, RouteState> {
     const { isDrawerOpen } = this.state;
     return (
       <BrowserRouter>
-        <Menu bgColor="dark" />
         <SideDrawer open={isDrawerOpen} onClose={this.handleCloseSideDrawer} />
-        <main className="main">
+        <View tagName="main" backgroundColor="light" className="main">
           <Switch>
             {pages.map(({ component, path, exact }) => {
               return <Route key={path} component={component} exact={exact} path={path} />;
             })}
             <Route component={NotFoundPage} />
           </Switch>
-        </main>
+        </View>
         <footer></footer>
       </BrowserRouter>
     );

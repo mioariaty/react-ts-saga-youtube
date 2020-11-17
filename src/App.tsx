@@ -22,9 +22,9 @@ export const themeOverrides: ThemeOverrides = {
     gray4: '#F7F6F9',
   },
   nightModeColors: {
-    dark: '#ffffff',
-    light: '#343238',
-    gray1: '#27262B',
+    dark: '#F7F6F9',
+    light: '#0f0f0f',
+    gray1: '#212121',
     gray2: '#343238',
     gray3: '#75737C',
     gray4: '#929099',

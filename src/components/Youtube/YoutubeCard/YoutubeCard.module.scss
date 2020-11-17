@@ -60,7 +60,7 @@
 }
 
 .meta {
-  padding-right: 24px;
+  // padding-right: 24px;
   flex-grow: 1;
   overflow: hidden;
 }
@@ -86,4 +86,9 @@
 
 .channel {
   @include litmitText(1);
+  font-size: 1.3rem;
+  margin-bottom: 0.5rem;
+  opacity: 0.8;
 }
+.view {font-size: 1.3rem;opacity: 0.8;}
+.time {font-size: 1.3rem;opacity: 0.8;}

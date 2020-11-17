@@ -1,4 +1,5 @@
 import MenuItem from 'components/Menu/Item/MenuItem';
+import { View } from 'core';
 // import Overlay from 'components/Overlay/Overlay';
 import React, { Component, CSSProperties, DOMAttributes, ReactNode } from 'react';
 import { NavLink } from 'react-router-dom';
@@ -29,7 +30,7 @@ class SideDrawer extends Component<SideDrawerProps, {}> {
     return (
       <>
         {/* {open && <Overlay onClick={onClose} />} */}
-        <div {...combineProps}>
+        <View tagName="div" backgroundColor="gray1" {...combineProps}>
           <div className={styles.navMenuItems}>
             <NavLink to="/">
               <MenuItem className={styles.navItem}>Home</MenuItem>
@@ -41,7 +42,7 @@ class SideDrawer extends Component<SideDrawerProps, {}> {
               <MenuItem>Youtube</MenuItem>
             </NavLink>
           </div>
-        </div>
+        </View>
       </>
     );
   }

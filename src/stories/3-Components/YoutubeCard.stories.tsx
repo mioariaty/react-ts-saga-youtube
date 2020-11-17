@@ -18,7 +18,7 @@ export const Default = () => {
   );
   return (
     <View gridEqual colMd={4}>
-      <YoutubeCard channel={channelName} duration="11:12" title={title} uri={uri} />
+      <YoutubeCard channel={channelName} duration="11:12" title={title} uri={uri} viewCount="1212" timeAgo="1212" />
     </View>
   );
 };
