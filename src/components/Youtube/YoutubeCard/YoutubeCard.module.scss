@@ -92,3 +92,27 @@
 }
 .view {font-size: 1.3rem;opacity: 0.8;}
 .time {font-size: 1.3rem;opacity: 0.8;}
+
+.vertical {
+  display: grid;
+  grid: 170px auto/300px;
+  margin-bottom: 3rem;
+
+  .thumbnailContainer {
+    position: relative;
+    grid-row: 1/2;
+    grid-column: 1/2;
+    cursor: pointer;
+  }
+
+  .detail {
+    padding-left: 1rem;
+    padding-top: 0px;
+    grid-column: 2/3;
+    grid-row: 1/2;
+  }
+
+  .meta {
+    flex-grow: inherit;
+  }
+}

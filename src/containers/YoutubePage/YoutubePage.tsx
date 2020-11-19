@@ -1,34 +1,28 @@
 import React, { FC, useEffect } from 'react';
 import { useSelector } from 'react-redux';
-import { Text, View } from 'core';
-import { VideoDocument, VideoSearchedDoc } from 'models/Videos';
-import YoutubeCard from 'components/Youtube/YoutubeCard/YoutubeCard';
-import TimeAgo from 'javascript-time-ago';
-import en from 'javascript-time-ago/locale/en';
-import Menu from 'components/Menu/Menu';
 import { Endpoint } from 'types/endpoint';
+import { VideoDocument } from 'models/Videos';
+import YoutubeCard from 'components/Youtube/YoutubeCard/YoutubeCard';
+import { View, Text, InfiniteScroll, ProgressLoader } from 'wiloke-react-core';
 import { useHistory } from 'react-router';
-import Spinner from '../../components/Spinner/Spinner';
-import { videoSelector } from './selectors';
 import { useGetVideosRequest } from './actions/getVideosAction';
-import { useSearchVideosRequest } from './actions/searchVideosAction';
-
-TimeAgo.addLocale(en);
-const timeAgo: TimeAgo = new TimeAgo();
+import { videoSelector } from './selectors';
+import { useGetVideoByIdRequest } from './actions/getVideoByIdAction';
 
 const YoutubePage: FC = () => {
-  const history = useHistory();
   const videoList = useSelector(videoSelector);
   const getVideoListRequest = useGetVideosRequest();
-  const getSearchedVideo = useSearchVideosRequest();
+  const getVideoPlayer = useGetVideoByIdRequest();
+  const history = useHistory();
 
   useEffect(() => {
     getVideoListRequest({ endpoint: Endpoint.VIDEOS });
     //eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  const _onOpenIframeVideo = (id: VideoDocument['id']) => () => {
-    console.log(id);
+  const _handleVideoPlayer = (videoId: VideoDocument['id'], channelId: VideoDocument['snippet']['channelId']) => () => {
+    getVideoPlayer({ endpoint: Endpoint.VIDEOS, videoId: videoId, channelId: channelId });
+    history.push(`/youtube/${videoId}`);
   };
 
   const _renderList = (item: VideoDocument) => {
@@ -40,19 +34,15 @@ const YoutubePage: FC = () => {
         uri={item.snippet.thumbnails.medium.url}
         title={item.snippet.title}
         viewCount={item.statistics?.viewCount}
-        onClick={_onOpenIframeVideo(item.id)}
-        timeAgo={timeAgo.format(new Date(item.snippet.publishedAt))}
+        timeAgo={item.snippet.publishedAt}
+        onClick={_handleVideoPlayer(item.id, item.snippet.channelId)}
       />
     );
   };
 
-  const _renderListSearch = (item: VideoSearchedDoc) => {
-    return <div key={item.id.videoId}> {item.snippet.title} </div>;
-  };
-
   const renderVideoList = () => {
     if (videoList.isLoading) {
-      return <Spinner />;
+      return <ProgressLoader done={videoList.isLoading} color="danger" containerClassName="progressBar" />;
     }
 
     if (videoList.message) {
@@ -70,16 +60,10 @@ const YoutubePage: FC = () => {
     );
   };
 
-  const _handleOnSubmit = (params: string) => {
-    getSearchedVideo({ endpoint: Endpoint.SEARCH, keyword: params });
-    history.push('/search');
-  };
-
   return (
     <>
-      <Menu bgColor="dark" fixed onSubmit={_handleOnSubmit} />
       <View style={{ marginTop: 76 }} tagName="div">
-        {renderVideoList()}
+        <InfiniteScroll>{renderVideoList()}</InfiniteScroll>
       </View>
     </>
   );

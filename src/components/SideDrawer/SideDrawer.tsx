@@ -1,5 +1,5 @@
 import MenuItem from 'components/Menu/Item/MenuItem';
-import { View } from 'core';
+import { View } from 'wiloke-react-core';
 // import Overlay from 'components/Overlay/Overlay';
 import React, { Component, CSSProperties, DOMAttributes, ReactNode } from 'react';
 import { NavLink } from 'react-router-dom';
@@ -12,7 +12,7 @@ export interface SideDrawerProps {
   className?: string;
   open: boolean;
   style: CSSProperties;
-  onClose: DOMAttributes<HTMLElement>['onClick'];
+  onClose?: DOMAttributes<HTMLElement>['onClick'];
 }
 type DefaultProps = Pick<SideDrawerProps, 'style' | 'anchor' | 'open'>;
 

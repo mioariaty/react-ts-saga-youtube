@@ -1,9 +1,11 @@
 import React from 'react';
-import { Provider } from 'react-redux';
+import { Provider, useDispatch } from 'react-redux';
 import { PersistGate } from 'redux-persist/lib/integration/react';
-import { ThemeProvider, ThemeOverrides } from 'core';
+import { ThemeProvider, ThemeOverrides, getUseDispatchRedux } from 'wiloke-react-core';
 import Routes from 'routes';
 import { store, persistor } from './store/configureStore';
+
+getUseDispatchRedux(useDispatch);
 
 export const themeOverrides: ThemeOverrides = {
   colors: {

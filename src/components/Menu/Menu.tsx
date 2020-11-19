@@ -1,10 +1,11 @@
-import Button from 'components/Button/Button';
 import Input from 'components/Input/Input';
-import React, { CSSProperties, FC, FormEvent, useState } from 'react';
+import React, { CSSProperties, DOMAttributes, FC, FormEvent, useState } from 'react';
 import { Link } from 'react-router-dom';
 import classNames from 'utils/functions/classNames';
 import * as FaIcons from 'react-icons/fa';
-import { View } from 'core';
+import { View } from 'wiloke-react-core';
+import { Button } from 'wiloke-react-core';
+
 import MenuItem from './Item/MenuItem';
 import styles from './Menu.module.scss';
 
@@ -16,6 +17,8 @@ export interface MenuProps {
   bgColor: 'dark' | 'light' | 'primary' | 'secondary';
   onSubmit: (term: string) => void;
   valueForm?: string;
+  isLoadding?: boolean;
+  onClick?: DOMAttributes<HTMLElement>['onClick'];
 }
 
 const Menu: FC<MenuProps> = ({
@@ -25,6 +28,8 @@ const Menu: FC<MenuProps> = ({
   onSubmit,
   bgColor = 'light',
   logo = 'https://i.pinimg.com/originals/de/1c/91/de1c91788be0d791135736995109272a.png',
+  isLoadding = false,
+  onClick,
 }) => {
   const [term, setTerm] = useState('');
 
@@ -42,7 +47,7 @@ const Menu: FC<MenuProps> = ({
   return (
     <View tagName="div" backgroundColor="gray1" {...combineProps}>
       <MenuItem className={styles.logo}>
-        <FaIcons.FaBars style={{ marginRight: 16 }} />
+        <FaIcons.FaBars style={{ marginRight: 16 }} onClick={onClick as any} />
         <Link to="/youtube" className="no-underline flex-center">
           <img src={logo} alt="" />
           <span>Youtube</span>
@@ -52,7 +57,7 @@ const Menu: FC<MenuProps> = ({
         <form onSubmit={_handleSubmit}>
           <div className={styles.formGroup}>
             <Input value={term} sizeInput="small" onChange={_handleOnChange} />
-            <Button type="submit" size="small">
+            <Button type="submit" backgroundColor="dribbble" loading={isLoadding} size="small" tachyons={['flex']} style={{ padding: '8px 12px' }}>
               Search
             </Button>
           </div>

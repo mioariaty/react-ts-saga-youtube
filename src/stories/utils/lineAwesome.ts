@@ -1,4 +1,4 @@
-import { LineAwesomeName } from 'core';
+import { LineAwesomeName } from 'wiloke-react-core';
 
 const lineAwesome: LineAwesomeName[] = [
   'glass',

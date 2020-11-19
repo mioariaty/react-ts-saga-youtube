@@ -110,4 +110,9 @@ export interface VideoCardInteface {
 
 export interface SearchParams {
   keyword: string;
+  v: string;
+}
+
+export interface VideoPlayerParam {
+  id: string;
 }

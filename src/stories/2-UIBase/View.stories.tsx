@@ -1,8 +1,8 @@
 import React from 'react';
-import { View, Text } from 'core';
 import getWithStylesProps from 'stories/utils/getWithStylesProps';
 import { boolean, number, array } from '@storybook/addon-knobs';
-import { range } from 'ramda';
+import { Text } from 'wiloke-react-core';
+import View from './base/View';
 
 export default {
   title: 'UI Base/View',
@@ -35,11 +35,13 @@ export const WithGridEqual = () => {
         gapMd={number('Gap Md', 20)}
         gapLg={number('Gap Lg', 20)}
       >
-        {range(0, items).map((_, index) => (
-          <Text key={String(index)} tagName="h3" tachyons="pa5" backgroundColor="gray1">
-            Item {index + 1}
-          </Text>
-        ))}
+        {Array(items)
+          .fill(null)
+          .map((_, index) => (
+            <Text key={String(index)} tagName="h3" tachyons="pa5" backgroundColor="gray1">
+              Item {index + 1}
+            </Text>
+          ))}
       </View>
     </View>
   );
@@ -51,13 +53,15 @@ export const WithGrid = () => {
   return (
     <View container>
       <View row>
-        {range(0, items).map((_, index) => (
-          <View columns={columns}>
-            <Text key={String(index)} tagName="h3" tachyons={['pa5', 'mb4']} backgroundColor="gray1">
-              Item {index + 1}
-            </Text>
-          </View>
-        ))}
+        {Array(items)
+          .fill(null)
+          .map((_, index) => (
+            <View columns={columns}>
+              <Text key={String(index)} tagName="h3" tachyons={['pa5', 'mb4']} backgroundColor="gray1">
+                Item {index + 1}
+              </Text>
+            </View>
+          ))}
       </View>
     </View>
   );

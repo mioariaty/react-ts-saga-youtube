@@ -1,4 +1,4 @@
-import { getActionType } from 'utils/functions/reduxActions';
+import { getActionType } from 'wiloke-react-core';
 import { AxiosResponse } from 'axios';
 import { VideosModel } from 'models/Videos';
 import { put, call, takeLatest } from 'redux-saga/effects';
@@ -22,11 +22,11 @@ function* handleGetVideos({ payload }: ReturnType<typeof getYoutubeVideos.reques
         part: 'snippet,contentDetails,statistics',
         chart: 'mostPopular',
         regionCode: 'VN',
-        maxResults: 8,
+        maxResults: 30,
       },
     });
 
-    yield put(getYoutubeVideos.success({ data: response.data.items }));
+    yield put(getYoutubeVideos.success({ data: { items: response.data.items } }));
   } catch (error) {
     yield put(getYoutubeVideos.failure({ message: error.message }));
   }

@@ -17574,6 +17574,14 @@ widest-line@^3.1.0:
   dependencies:
     string-width "^4.0.0"
 
+wiloke-react-core@^0.0.1-6:
+  version "0.0.1-6"
+  resolved "https://registry.yarnpkg.com/wiloke-react-core/-/wiloke-react-core-0.0.1-6.tgz#bcfe1aeb814afdc5f476969e98ba3262eff138c7"
+  integrity sha512-Lq9s891gQhgudG0LM3bVv4WNT3jYnR1l52snxMiIB9o07t4SAbJW6PBN0UD+ZUbESUnALTYoHZOReVpni5Q+lg==
+  dependencies:
+    fs-extra "^9.0.1"
+    react-helmet "^6.1.0"
+
 with@^7.0.0:
   version "7.0.2"
   resolved "https://registry.yarnpkg.com/with/-/with-7.0.2.tgz#ccee3ad542d25538a7a7a80aad212b9828495bac"

@@ -1,6 +1,6 @@
 import { SearchParams, VideoSearchedDoc } from 'models/Videos';
 import { Endpoint } from 'types/endpoint';
-import { createAsyncAction, createDispatchAction } from 'utils/functions/reduxActions';
+import { createAsyncAction, createDispatchAction } from 'wiloke-react-core';
 
 export const searchVideoAction = createAsyncAction(['@searchVideosRequest', '@searchVideosSuccess', '@searchVideosFailure'])<
   { endpoint: Endpoint.SEARCH; keyword: SearchParams['keyword'] },

@@ -1,9 +1,10 @@
 import React from 'react';
 import { action } from '@storybook/addon-actions';
-import { Button, ButtonProps, View, LineAwesome, Text, Size } from 'core';
 import { text, select, boolean, number } from '@storybook/addon-knobs';
 import getOptions from 'stories/utils/getOptions';
 import getWithStylesProps, { generalGroup } from 'stories/utils/getWithStylesProps';
+import { LineAwesome, Text, View, ButtonProps, Size } from 'wiloke-react-core';
+import Button from './base/Button';
 
 export default {
   title: 'UI Base/Button',

@@ -3,7 +3,7 @@ import { text } from '@storybook/addon-knobs';
 // import getOptions from 'stories/utils/getOptions';
 // import { action } from '@storybook/addon-actions';
 import YoutubeCard from 'components/Youtube/YoutubeCard/YoutubeCard';
-import { View } from 'core';
+import { View } from 'wiloke-react-core';
 
 export default {
   title: 'Components/YouTubeCard',

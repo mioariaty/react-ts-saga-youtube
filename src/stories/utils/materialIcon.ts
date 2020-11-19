@@ -1,4 +1,4 @@
-import { MaterialIconName } from 'core';
+import { MaterialIconName } from 'wiloke-react-core';
 
 const materialIcon: MaterialIconName[] = [
   '3d_rotation',

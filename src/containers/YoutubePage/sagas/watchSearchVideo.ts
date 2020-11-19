@@ -1,4 +1,4 @@
-import { getActionType } from 'core';
+import { getActionType } from 'wiloke-react-core';
 import { put, call, takeLatest } from 'redux-saga/effects';
 import fetchAPI from 'utils/functions/fetchAPI';
 import { AxiosResponse } from 'axios';
@@ -12,7 +12,7 @@ function* handleSearchVideo({ payload }: ReturnType<typeof searchVideoAction.req
       url: payload.endpoint,
       params: {
         key: YOUTUBE_API_KEY,
-        part: 'snippet',
+        part: 'snippet,id',
         maxResults: 10,
         type: 'video',
         q: payload.keyword,

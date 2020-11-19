@@ -1,4 +1,4 @@
 {
-  "baseUrl": "https://www.googleapis.com/youtube/v3/",
+  "baseUrl": "https://content-youtube.googleapis.com/youtube/v3/",
   "timeout": 30000
 }

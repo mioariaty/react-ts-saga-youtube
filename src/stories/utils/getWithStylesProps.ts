@@ -1,7 +1,5 @@
-import { WithStylesProps, BorderStyle, BorderWidth } from 'core';
-
 import { select, optionsKnob, number, boolean } from '@storybook/addon-knobs';
-import defaultColors from 'core/themes/defaultColors';
+import { BorderStyle, BorderWidth, defaultColors, WithStylesProps } from 'wiloke-react-core';
 import getOptions from './getOptions';
 
 export const borderStyleGroup = 'Border Style';

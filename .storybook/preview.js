@@ -2,7 +2,7 @@ import React from 'react';
 import { addDecorator, addParameters } from '@storybook/react';
 import { withKnobs } from '@storybook/addon-knobs';
 import { MemoryRouter } from 'react-router-dom';
-import { ThemeProvider } from 'core';
+import { ThemeProvider } from 'wiloke-react-core';
 import { themeOverrides } from 'App';
 import '!style-loader!css-loader!sass-loader!styles/main.scss';
 import { Provider } from 'react-redux';

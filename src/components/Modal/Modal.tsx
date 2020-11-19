@@ -1,7 +1,7 @@
 import React, { DOMAttributes, FC, ReactNode } from 'react';
 import Overlay from 'components/Overlay/Overlay';
 import { createPortal } from 'react-dom';
-import { View } from 'core';
+import { View } from 'wiloke-react-core';
 import styles from './Modal.module.scss';
 
 export interface ModalProps {
