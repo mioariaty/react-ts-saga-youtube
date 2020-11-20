@@ -10,13 +10,13 @@
   position: relative;
   display: block;
 
-  &:before {
-    content: '';
-    display: block;
-    width: 100%;
-    padding-top: 56.25%;
-    position: relative;
-  }
+  // &:before {
+  //   content: '';
+  //   display: block;
+  //   width: 100%;
+  //   padding-top: 56.25%;
+  //   position: relative;
+  // }
 }
 
 .thumbLink {
@@ -107,7 +107,7 @@
 
   .detail {
     padding-left: 1rem;
-    padding-top: 0px;
+    padding-top: 1rem;
     grid-column: 2/3;
     grid-row: 1/2;
   }

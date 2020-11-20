@@ -17,7 +17,9 @@ function* handleGetVideoById({ payload }: ReturnType<typeof getVideoByIdAction.r
         fields: 'kind,items(contentDetails/duration,id,snippet(channelId,channelTitle,description,publishedAt,thumbnails/medium,title),statistics)',
       },
     });
-    yield put(getVideoByIdAction.success({ data: response.data, videoId: payload.videoId }));
+    console.log(response.data);
+
+    yield put(getVideoByIdAction.success({ data: response.data, videoId: String(payload.videoId) }));
   } catch (error) {
     yield put(getVideoByIdAction.failure(error.message));
   }

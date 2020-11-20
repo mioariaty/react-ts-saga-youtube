@@ -9,7 +9,7 @@ export interface VideoThumbnails {
     width: number;
     height: number;
   };
-  high?: {
+  high: {
     url: string;
     width: number;
     height: number;
@@ -19,7 +19,7 @@ export interface VideoThumbnails {
     width: number;
     height: number;
   };
-  maxres?: {
+  maxres: {
     url: string;
     width: number;
     height: number;

@@ -3,7 +3,7 @@ import React, { CSSProperties, DOMAttributes, FC, FormEvent, useState } from 're
 import { Link } from 'react-router-dom';
 import classNames from 'utils/functions/classNames';
 import * as FaIcons from 'react-icons/fa';
-import { View } from 'wiloke-react-core';
+import { MaterialIcon, View } from 'wiloke-react-core';
 import { Button } from 'wiloke-react-core';
 
 import MenuItem from './Item/MenuItem';
@@ -17,7 +17,6 @@ export interface MenuProps {
   bgColor: 'dark' | 'light' | 'primary' | 'secondary';
   onSubmit: (term: string) => void;
   valueForm?: string;
-  isLoadding?: boolean;
   onClick?: DOMAttributes<HTMLElement>['onClick'];
 }
 
@@ -28,7 +27,6 @@ const Menu: FC<MenuProps> = ({
   onSubmit,
   bgColor = 'light',
   logo = 'https://i.pinimg.com/originals/de/1c/91/de1c91788be0d791135736995109272a.png',
-  isLoadding = false,
   onClick,
 }) => {
   const [term, setTerm] = useState('');
@@ -56,9 +54,9 @@ const Menu: FC<MenuProps> = ({
       <div className={styles.formContainer}>
         <form onSubmit={_handleSubmit}>
           <div className={styles.formGroup}>
-            <Input value={term} sizeInput="small" onChange={_handleOnChange} />
-            <Button type="submit" backgroundColor="dribbble" loading={isLoadding} size="small" tachyons={['flex']} style={{ padding: '8px 12px' }}>
-              Search
+            <Input value={term} sizeInput="small" onChange={_handleOnChange} style={{ borderRadius: 0 }} />
+            <Button type="submit" backgroundColor="gray2" size="small" tachyons={['flex']} style={{ padding: '1px 12px' }}>
+              <MaterialIcon name="search" />
             </Button>
           </div>
         </form>

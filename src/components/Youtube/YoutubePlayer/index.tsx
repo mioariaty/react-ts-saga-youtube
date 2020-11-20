@@ -8,7 +8,7 @@ export interface VideoPlayer {
 }
 
 const VideoPlayer: FC<VideoPlayer> = ({ videoId }) => {
-  const url = `https://www.youtube.com/embed/${videoId}`;
+  const url = `https://www.youtube.com/embed/${videoId}?autoplay=1`;
   return (
     <View tagName="div" className={styles.container}>
       <View tagName="div" className={styles.video}>

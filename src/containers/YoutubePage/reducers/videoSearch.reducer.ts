@@ -1,8 +1,9 @@
 import { VideoSearchedDoc } from 'models/Videos';
 import { ActionTypes, createReducer, handleAction } from 'wiloke-react-core';
+import { getRelatedVideoAction } from '../actions/getRelatedVideoAction';
 import { searchVideoAction } from '../actions/searchVideosAction';
 
-type VideoAction = ActionTypes<typeof searchVideoAction>;
+type VideoAction = ActionTypes<typeof searchVideoAction | typeof getRelatedVideoAction>;
 
 interface VideoState {
   isLoading: boolean;
@@ -29,6 +30,22 @@ export const videoSearchReducer = createReducer<VideoState, VideoAction>(initial
     };
   }),
   handleAction('@searchVideosFailure', ({ state, action }) => ({
+    ...state,
+    isLoading: false,
+    message: action.payload.message,
+  })),
+  handleAction('@getRelatedVideoRequest', ({ state }) => ({
+    ...state,
+    isLoading: true,
+  })),
+  handleAction('@getRelatedVideoSuccess', ({ state, action }) => {
+    return {
+      ...state,
+      isLoading: false,
+      data: action.payload.data.items,
+    };
+  }),
+  handleAction('@getRelatedVideoFailure', ({ state, action }) => ({
     ...state,
     isLoading: false,
     message: action.payload.message,

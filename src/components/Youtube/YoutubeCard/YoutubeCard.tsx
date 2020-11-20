@@ -1,4 +1,4 @@
-import { classNames, View, Text } from 'wiloke-react-core';
+import { classNames, View, Text, Image } from 'wiloke-react-core';
 import { VideoDocument } from 'models/Videos';
 import React, { CSSProperties, DOMAttributes, FC } from 'react';
 import convertTime from 'utils/functions/formatTime';
@@ -8,7 +8,7 @@ import en from 'javascript-time-ago/locale/en';
 import styles from './YoutubeCard.module.scss';
 
 export interface YoutubeCardProps {
-  uri: VideoDocument['snippet']['thumbnails']['standard']['url'];
+  uri: VideoDocument['snippet']['thumbnails']['medium']['url'];
   title: VideoDocument['snippet']['title'];
   duration?: VideoDocument['contentDetails']['duration'];
   channel: VideoDocument['snippet']['channelTitle'];
@@ -25,10 +25,18 @@ const time: TimeAgo = new TimeAgo();
 const YoutubeCard: FC<YoutubeCardProps> = ({ channel, duration, title, uri, className, style, timeAgo, viewCount, isVertical = false, onClick }) => {
   const vertical = isVertical ? styles.vertical : '';
   const combineProps = { style, className: classNames(styles.container, className, vertical) };
+
+  // const srcSet = {
+  //   '500': uri.high.url,
+  //   '768': uri.medium.url,
+  //   '992': uri.high.url,
+  // };
+
+  // const previewSrc = uri;
   return (
     <View {...combineProps} tagName="div" backgroundColor="gray1" onClick={onClick}>
       <View className={styles.thumbnailContainer} tagName="div">
-        <img className={styles.thumbImage} src={uri} alt="" />
+        <Image src={uri} aspectRatioInPercent={56.25} lazyLoad />
         <Text className={styles.dutation} tagName="p" color="light" nightModeBlacklist="color">
           {convertTime(String(duration))}
         </Text>

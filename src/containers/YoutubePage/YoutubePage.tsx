@@ -8,11 +8,14 @@ import { useHistory } from 'react-router';
 import { useGetVideosRequest } from './actions/getVideosAction';
 import { videoSelector } from './selectors';
 import { useGetVideoByIdRequest } from './actions/getVideoByIdAction';
+import SkeletonYoutubeCard from './SkeletonYoutubeCard';
+import { useGetRelatedVideoRequest } from './actions/getRelatedVideoAction';
 
 const YoutubePage: FC = () => {
   const videoList = useSelector(videoSelector);
   const getVideoListRequest = useGetVideosRequest();
   const getVideoPlayer = useGetVideoByIdRequest();
+  const getRelatedVideo = useGetRelatedVideoRequest();
   const history = useHistory();
 
   useEffect(() => {
@@ -22,6 +25,8 @@ const YoutubePage: FC = () => {
 
   const _handleVideoPlayer = (videoId: VideoDocument['id'], channelId: VideoDocument['snippet']['channelId']) => () => {
     getVideoPlayer({ endpoint: Endpoint.VIDEOS, videoId: videoId, channelId: channelId });
+    getRelatedVideo({ endpoint: Endpoint.SEARCH, videoId: videoId });
+
     history.push(`/youtube/${videoId}`);
   };
 
@@ -42,7 +47,12 @@ const YoutubePage: FC = () => {
 
   const renderVideoList = () => {
     if (videoList.isLoading) {
-      return <ProgressLoader done={videoList.isLoading} color="danger" containerClassName="progressBar" />;
+      return (
+        <>
+          <ProgressLoader done={videoList.isLoading} color="danger" containerClassName="progressBar" />
+          <SkeletonYoutubeCard item={8} />
+        </>
+      );
     }
 
     if (videoList.message) {
