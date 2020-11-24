@@ -1,5 +1,5 @@
-import { Space as WSpace } from 'wiloke-react-core';
+import { Space } from 'wiloke-react-core';
 
-const Space = WSpace;
+export const Component = Space;
 
-export default Space;
+export default Component;

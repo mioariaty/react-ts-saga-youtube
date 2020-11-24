@@ -1,4 +1,4 @@
-import { getActionType } from 'wiloke-react-core';
+import { getActionType } from 'wiloke-react-core/utils';
 import { put, call, takeLatest } from 'redux-saga/effects';
 import fetchAPI from 'utils/functions/fetchAPI';
 import { AxiosResponse } from 'axios';
@@ -18,7 +18,6 @@ function* handleSearchVideo({ payload }: ReturnType<typeof searchVideoAction.req
         q: payload.keyword,
       },
     });
-    console.log(res.data);
 
     yield put(searchVideoAction.success({ data: res.data.items }));
   } catch (error) {

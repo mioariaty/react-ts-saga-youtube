@@ -2,7 +2,7 @@ import { put, call, takeLatest } from 'redux-saga/effects';
 import { TodolistItem } from 'utils/api/Todolist';
 import { AxiosResponse } from 'axios';
 import fetchAPI from 'utils/functions/fetchAPI';
-import { getActionType } from 'wiloke-react-core';
+import { getActionType } from 'wiloke-react-core/utils';
 import { getTodolist } from 'containers/HomePage/actions/actionTodolist';
 
 function* handleTodolist({ payload }: ReturnType<typeof getTodolist.request>) {

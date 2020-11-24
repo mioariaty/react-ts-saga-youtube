@@ -1,5 +1,5 @@
-import { Button as WButton } from 'wiloke-react-core';
+import { Button } from 'wiloke-react-core';
 
-const Button = WButton;
+export const Component = Button;
 
-export default Button;
+export default Component;

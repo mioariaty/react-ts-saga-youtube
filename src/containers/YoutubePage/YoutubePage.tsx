@@ -1,21 +1,23 @@
+import YoutubeCard from 'components/Youtube/YoutubeCard/YoutubeCard';
+import { VideoDocument } from 'models/Videos';
 import React, { FC, useEffect } from 'react';
 import { useSelector } from 'react-redux';
-import { Endpoint } from 'types/endpoint';
-import { VideoDocument } from 'models/Videos';
-import YoutubeCard from 'components/Youtube/YoutubeCard/YoutubeCard';
-import { View, Text, InfiniteScroll, ProgressLoader } from 'wiloke-react-core';
 import { useHistory } from 'react-router';
+import { Endpoint } from 'types/endpoint';
+import { ProgressLoader, Text, View } from 'wiloke-react-core';
+import { useGetCommentThreadsRequest } from './actions/getComnentThreadAction';
+import { useGetRelatedVideoRequest } from './actions/getRelatedVideoAction';
+import { useGetVideoByIdRequest } from './actions/getVideoByIdAction';
 import { useGetVideosRequest } from './actions/getVideosAction';
 import { videoSelector } from './selectors';
-import { useGetVideoByIdRequest } from './actions/getVideoByIdAction';
 import SkeletonYoutubeCard from './SkeletonYoutubeCard';
-import { useGetRelatedVideoRequest } from './actions/getRelatedVideoAction';
 
 const YoutubePage: FC = () => {
   const videoList = useSelector(videoSelector);
   const getVideoListRequest = useGetVideosRequest();
   const getVideoPlayer = useGetVideoByIdRequest();
   const getRelatedVideo = useGetRelatedVideoRequest();
+  const getComments = useGetCommentThreadsRequest();
   const history = useHistory();
 
   useEffect(() => {
@@ -23,11 +25,13 @@ const YoutubePage: FC = () => {
     //eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  const _handleVideoPlayer = (videoId: VideoDocument['id'], channelId: VideoDocument['snippet']['channelId']) => () => {
-    getVideoPlayer({ endpoint: Endpoint.VIDEOS, videoId: videoId, channelId: channelId });
-    getRelatedVideo({ endpoint: Endpoint.SEARCH, videoId: videoId });
-
-    history.push(`/youtube/${videoId}`);
+  const _handleVideoPlayer = (videoId: VideoDocument['id'], channelId: VideoDocument['snippet']['channelId']) => {
+    return () => {
+      getVideoPlayer({ endpoint: Endpoint.VIDEOS, videoId: videoId, channelId: channelId });
+      getRelatedVideo({ endpoint: Endpoint.SEARCH, videoId: videoId });
+      getComments({ endpoint: Endpoint.COMMENT_THREAD, videoId: videoId });
+      history.push(`/youtube/watch?v=${videoId}`);
+    };
   };
 
   const _renderList = (item: VideoDocument) => {
@@ -64,7 +68,7 @@ const YoutubePage: FC = () => {
     }
 
     return (
-      <View gridEqual colMd={4} tagName="div">
+      <View gridEqual colSm={2} colXs={1} colMd={3} colLg={4} tagName="div">
         {videoList.data.map(_renderList)}
       </View>
     );
@@ -73,7 +77,7 @@ const YoutubePage: FC = () => {
   return (
     <>
       <View style={{ marginTop: 76 }} tagName="div">
-        <InfiniteScroll>{renderVideoList()}</InfiniteScroll>
+        {renderVideoList()}
       </View>
     </>
   );

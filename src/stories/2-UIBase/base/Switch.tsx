@@ -1,5 +1,5 @@
-import { Switch as WSwitch } from 'wiloke-react-core';
+import { Switch } from 'wiloke-react-core';
 
-const Switch = WSwitch;
+export const Component = Switch;
 
-export default Switch;
+export default Component;

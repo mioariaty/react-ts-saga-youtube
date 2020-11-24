@@ -1,5 +1,5 @@
-import { TextUnderline as WTextUnderline } from 'wiloke-react-core';
+import { TextUnderline } from 'wiloke-react-core';
 
-const TextUnderline = WTextUnderline;
+export const Component = TextUnderline;
 
-export default TextUnderline;
+export default Component;

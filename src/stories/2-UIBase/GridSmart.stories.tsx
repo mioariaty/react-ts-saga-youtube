@@ -7,7 +7,7 @@ import GridSmart from './base/GridSmart';
 
 export default {
   title: 'UI Base/GridSmart',
-  component: (GridSmart as any).type,
+  component: GridSmart,
 };
 
 export const Default = () => {

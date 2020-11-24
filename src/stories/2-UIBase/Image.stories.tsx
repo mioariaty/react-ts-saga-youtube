@@ -43,15 +43,28 @@ export const WithProps = () => {
   const previewSrc = 'https://highspeedblog.com/wp-content/uploads/2020/06/pexels-photo-3653124-4x3.jpeg';
 
   return (
-    <Image
-      alt={previewSrc}
-      aspectRatioInPercent={aspectRatioInPercent}
-      radius={radius}
-      src={srcType === 'src' ? src : srcSet}
-      width={1024}
-      previewSrc={previewSrc}
-      height={683}
-    />
+    <View container>
+      <Image
+        alt={previewSrc}
+        aspectRatioInPercent={aspectRatioInPercent}
+        radius={radius}
+        src={srcType === 'src' ? src : srcSet}
+        previewSrc={previewSrc}
+      />
+      <GridSmart columnWidth={500}>
+        <Image
+          src={{
+            300: 'https://images.pexels.com/photos/5700172/pexels-photo-5700172.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500',
+            350: `https://images.pexels.com/photos/450441/pexels-photo-450441.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940`,
+          }}
+        />
+        <Image src={`https://images.pexels.com/photos/450441/pexels-photo-450441.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940`} />
+        <Image src={`https://images.pexels.com/photos/450441/pexels-photo-450441.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940`} />
+        <Image src={`https://images.pexels.com/photos/450441/pexels-photo-450441.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940`} />
+        <Image src={`https://images.pexels.com/photos/450441/pexels-photo-450441.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940`} />
+        <Image src={`https://images.pexels.com/photos/450441/pexels-photo-450441.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940`} />
+      </GridSmart>
+    </View>
   );
 };
 

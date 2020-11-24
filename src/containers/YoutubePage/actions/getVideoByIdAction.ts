@@ -1,6 +1,6 @@
 import { VideoDocument, VideosModel } from 'models/Videos';
 import { Endpoint } from 'types/endpoint';
-import { createAsyncAction, createDispatchAction } from 'wiloke-react-core';
+import { createAsyncAction, createDispatchAction } from 'wiloke-react-core/utils';
 
 export const getVideoByIdAction = createAsyncAction(['@getVideoByIdRequest', '@getVideoByIdSuccess', '@getVideoByIdFailure'])<
   { endpoint: Endpoint.VIDEOS; videoId?: VideoDocument['id']; channelId?: VideoDocument['snippet']['channelId'] },

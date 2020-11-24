@@ -1,5 +1,5 @@
-import { Divider as WDivider } from 'wiloke-react-core';
+import { Divider } from 'wiloke-react-core';
 
-const Divider = WDivider;
+export const Component = Divider;
 
-export default Divider;
+export default Component;

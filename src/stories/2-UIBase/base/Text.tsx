@@ -1,5 +1,5 @@
-import { Text as WText } from 'wiloke-react-core';
+import { Text } from 'wiloke-react-core';
 
-const Text = WText;
+export const Component = Text;
 
-export default Text;
+export default Component;

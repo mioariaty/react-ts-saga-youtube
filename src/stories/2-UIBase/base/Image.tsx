@@ -1,5 +1,5 @@
-import { Image as WImage } from 'wiloke-react-core';
+import { Image } from 'wiloke-react-core';
 
-const Image = WImage;
+export const Component = Image;
 
-export default Image;
+export default Component;

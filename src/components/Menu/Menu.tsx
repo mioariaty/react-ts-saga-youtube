@@ -55,7 +55,7 @@ const Menu: FC<MenuProps> = ({
         <form onSubmit={_handleSubmit}>
           <div className={styles.formGroup}>
             <Input value={term} sizeInput="small" onChange={_handleOnChange} style={{ borderRadius: 0 }} />
-            <Button type="submit" backgroundColor="gray2" size="small" tachyons={['flex']} style={{ padding: '1px 12px' }}>
+            <Button type="submit" backgroundColor="gray2" size="small" tachyons={['flex', 'items-center']} style={{ padding: '1px 12px' }}>
               <MaterialIcon name="search" />
             </Button>
           </div>

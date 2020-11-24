@@ -1,6 +1,5 @@
-import { memo } from 'react';
-import { Skeleton as WSkeleton } from 'wiloke-react-core';
+import { Skeleton } from 'wiloke-react-core';
 
-export const Skeleton = WSkeleton;
+export const Component = Skeleton;
 
-export default memo(Skeleton);
+export default Component;

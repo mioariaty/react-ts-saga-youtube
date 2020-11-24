@@ -1,4 +1,4 @@
-import { getActionType } from 'wiloke-react-core';
+import { getActionType } from 'wiloke-react-core/utils';
 import { AxiosResponse } from 'axios';
 import { VideosModel } from 'models/Videos';
 import { put, call, takeLatest } from 'redux-saga/effects';

@@ -1,5 +1,5 @@
-import { LineAwesome as WLineAwesome } from 'wiloke-react-core';
+import { LineAwesome } from 'wiloke-react-core';
 
-const LineAwesome = WLineAwesome;
+export const Component = LineAwesome;
 
-export default LineAwesome;
+export default Component;

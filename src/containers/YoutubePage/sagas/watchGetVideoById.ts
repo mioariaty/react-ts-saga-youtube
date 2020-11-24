@@ -1,4 +1,4 @@
-import { getActionType } from 'wiloke-react-core';
+import { getActionType } from 'wiloke-react-core/utils';
 import { AxiosResponse } from 'axios';
 import { VideosModel } from 'models/Videos';
 import { put, call, takeLatest } from 'redux-saga/effects';
@@ -17,7 +17,6 @@ function* handleGetVideoById({ payload }: ReturnType<typeof getVideoByIdAction.r
         fields: 'kind,items(contentDetails/duration,id,snippet(channelId,channelTitle,description,publishedAt,thumbnails/medium,title),statistics)',
       },
     });
-    console.log(response.data);
 
     yield put(getVideoByIdAction.success({ data: response.data, videoId: String(payload.videoId) }));
   } catch (error) {

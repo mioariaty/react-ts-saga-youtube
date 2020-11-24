@@ -1,5 +1,5 @@
-import { Alert as WAlert } from 'wiloke-react-core';
+import { Alert } from 'wiloke-react-core';
 
-const Alert = WAlert;
+export const Component = Alert;
 
-export default Alert;
+export default Component;

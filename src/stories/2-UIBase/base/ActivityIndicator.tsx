@@ -1,5 +1,5 @@
-import { ActivityIndicator as WActivityIndicator } from 'wiloke-react-core';
+import { ActivityIndicator } from 'wiloke-react-core';
 
-export const ActivityIndicator = WActivityIndicator;
+export const Component = ActivityIndicator;
 
-export default ActivityIndicator;
+export default Component;

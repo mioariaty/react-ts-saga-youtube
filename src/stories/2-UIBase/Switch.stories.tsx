@@ -17,6 +17,9 @@ export const Default = () => {
     'medium',
   );
   const checked = boolean('Checked', false);
+  const loading = boolean('Loading', false);
+  const disabled = boolean('Disabled', false);
+
   const [checkedState, setChecked] = useState(checked);
 
   const _handleClick = () => {
@@ -24,5 +27,5 @@ export const Default = () => {
     action('onChange');
   };
 
-  return <Switch onChange={_handleClick} size={size} checked={checkedState} />;
+  return <Switch onChange={_handleClick} size={size} checked={checkedState} loading={loading} disabled={disabled} />;
 };

@@ -1,4 +1,4 @@
-import { getActionType } from 'wiloke-react-core';
+import { getActionType } from 'wiloke-react-core/utils';
 import { put, call, takeLatest } from 'redux-saga/effects';
 import fetchAPI from 'utils/functions/fetchAPI';
 import { AxiosResponse } from 'axios';
@@ -13,12 +13,12 @@ function* handleGetRelatedVideos({ payload }: ReturnType<typeof getRelatedVideoA
       params: {
         key: YOUTUBE_API_KEY,
         part: 'snippet',
+        order: 'viewCount',
         type: 'video',
         maxResults: 12,
         relatedToVideoId: payload.videoId,
       },
     });
-
     yield put(getRelatedVideoAction.success({ data: res.data }));
   } catch (error) {
     yield put(getRelatedVideoAction.failure(error.response));

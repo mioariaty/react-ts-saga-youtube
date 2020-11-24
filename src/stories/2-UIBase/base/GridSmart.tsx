@@ -1,6 +1,5 @@
-import { memo } from 'react';
-import { GridSmart as WGridSmart } from 'wiloke-react-core';
+import { GridSmart } from 'wiloke-react-core';
 
-const GridSmart = WGridSmart;
+export const Component = GridSmart;
 
-export default memo(GridSmart);
+export default Component;

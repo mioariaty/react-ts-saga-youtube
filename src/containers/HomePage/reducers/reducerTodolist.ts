@@ -1,4 +1,4 @@
-import { ActionTypes, createReducer, handleAction } from 'wiloke-react-core';
+import { ActionTypes, createReducer, handleAction } from 'wiloke-react-core/utils';
 import { TodolistItem } from 'utils/api/Todolist';
 import { getTodolist } from '../actions/actionTodolist';
 

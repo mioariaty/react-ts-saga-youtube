@@ -1,5 +1,5 @@
-import { View as WView } from 'wiloke-react-core';
+import { View } from 'wiloke-react-core';
 
-const View = WView;
+export const Component = View;
 
-export default View;
+export default Component;

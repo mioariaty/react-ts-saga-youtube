@@ -1,21 +1,44 @@
-import { ProgressLoader, Text, View } from 'wiloke-react-core';
-import React, { FC } from 'react';
-import VideoPlayer from 'components/Youtube/YoutubePlayer';
-import { useSelector } from 'react-redux';
+import VideoComment from 'components/Youtube/VideoComment';
 import VideoPlayerMeta from 'components/Youtube/VideoPlayerMeta';
-import { VideoDocument, VideoSearchedDoc } from 'models/Videos';
 import YoutubeCard from 'components/Youtube/YoutubeCard/YoutubeCard';
+import VideoPlayer from 'components/Youtube/YoutubePlayer';
+import { CommentThreadDocument } from 'models/Comments';
+import { VideoDocument, VideoSearchedDoc } from 'models/Videos';
+import React, { FC, useEffect } from 'react';
+import { useSelector } from 'react-redux';
 import { useHistory } from 'react-router';
 import { Endpoint } from 'types/endpoint';
+import { ProgressLoader, Text, View } from 'wiloke-react-core';
+import { useGetCommentThreadsRequest } from './actions/getComnentThreadAction';
+import { useGetRelatedVideoRequest } from './actions/getRelatedVideoAction';
 import { useGetVideoByIdRequest } from './actions/getVideoByIdAction';
+import { commentSelector, videoSearchSelector, videoSelector } from './selectors';
 import SkeletonYoutubeCard from './SkeletonYoutubeCard';
-import { videoSelector, videoSearchSelector } from './selectors';
 
 const YoutubePlayerPage: FC = () => {
+  const history = useHistory();
   const videoPlayer = useSelector(videoSelector);
   const relatedVideos = useSelector(videoSearchSelector);
+  const commentThreads = useSelector(commentSelector);
+  const { videoId } = videoPlayer;
   const getVideoPlayer = useGetVideoByIdRequest();
-  const history = useHistory();
+  const getComments = useGetCommentThreadsRequest();
+  const getRelatedVideoRequest = useGetRelatedVideoRequest();
+
+  useEffect(() => {
+    getComments({ endpoint: Endpoint.COMMENT_THREAD, videoId: videoId });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [videoId]);
+
+  useEffect(() => {
+    getRelatedVideoRequest({ endpoint: Endpoint.SEARCH, videoId: videoId });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [videoId]);
+
+  const _handleVideoPlayer = (videoId: VideoDocument['id'], channelId: VideoDocument['snippet']['channelId']) => () => {
+    getVideoPlayer({ endpoint: Endpoint.VIDEOS, videoId: videoId, channelId: channelId });
+    history.push(`/youtube/${videoId}`);
+  };
 
   const _renderListVideoPlayer = (item: VideoDocument) => {
     const { contentDetails, snippet, statistics } = item;
@@ -33,7 +56,20 @@ const YoutubePlayerPage: FC = () => {
       />
     );
   };
-
+  const _renderListComments = (item: CommentThreadDocument) => {
+    const { authorDisplayName, authorProfileImageUrl, textOriginal, likeCount, publishedAt } = item.snippet.topLevelComment.snippet;
+    const { id } = item;
+    return (
+      <VideoComment
+        key={id}
+        authorImage={authorProfileImageUrl}
+        authorName={authorDisplayName}
+        commentContent={textOriginal}
+        likeCount={likeCount}
+        publishedAt={publishedAt}
+      />
+    );
+  };
   const _renderVideoPlayer = () => {
     if (videoPlayer.isLoading) {
       return <ProgressLoader done={videoPlayer.isLoading} color="danger" containerClassName="progressBar" />;
@@ -53,11 +89,19 @@ const YoutubePlayerPage: FC = () => {
     );
   };
 
-  const _handleVideoPlayer = (videoId: VideoDocument['id'], channelId: VideoDocument['snippet']['channelId']) => () => {
-    getVideoPlayer({ endpoint: Endpoint.VIDEOS, videoId: videoId, channelId: channelId });
-    history.push(`/youtube/${videoId}`);
+  const _renderCommentRequest = () => {
+    if (commentThreads.isLoading) {
+      return <SkeletonYoutubeCard item={4} isList imageRatio={100} />;
+    }
+    // if (commentThreads.message) {
+    //   return (
+    //     <Text tagName="h3" color="dark">
+    //       {commentThreads.message}
+    //     </Text>
+    //   );
+    // }
+    return commentThreads.data.map(_renderListComments);
   };
-
   const _renderListSearch = (item: VideoSearchedDoc) => {
     const { channelTitle, publishedAt, thumbnails, title, channelId } = item.snippet;
     const { videoId } = item.id;
@@ -89,11 +133,12 @@ const YoutubePlayerPage: FC = () => {
 
   return (
     <View style={{ marginTop: 76 }} tagName="div">
-      <View row>
-        <View columns={[12, 10, 8]} tachyons="pr4">
+      <View tachyons={['flex', 'flex-wrap']}>
+        <View columns={[12, 8, 8]}>
           {_renderVideoPlayer()}
+          {_renderCommentRequest()}
         </View>
-        <View columns={[12, 2, 4]}>
+        <View columns={[12, 4, 4]} tachyons={['pl3', 'pr3']}>
           <Text tagName="p" color="dark4" tachyons="mb3" style={{ fontSize: 24 }}>
             Related Videos
           </Text>

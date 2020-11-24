@@ -1,5 +1,5 @@
-import { Sticky as WSticky } from 'wiloke-react-core';
+import { Sticky } from 'wiloke-react-core';
 
-const Sticky = WSticky;
+export const Component = Sticky;
 
-export default Sticky;
+export default Component;

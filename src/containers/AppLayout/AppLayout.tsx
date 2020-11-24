@@ -5,7 +5,7 @@ import { useHistory } from 'react-router';
 import { Endpoint } from 'types/endpoint';
 import SideDrawer from 'components/SideDrawer/SideDrawer';
 import { View } from 'wiloke-react-core';
-
+import styles from './AppLayout.module.scss';
 export interface AppLayoutProps {
   children: ReactNode;
 }
@@ -27,7 +27,7 @@ const AppLayout = ({ children }: AppLayoutProps) => {
     <>
       <SideDrawer open={drawerOpen} onClose={_handleCloseSideDrawer} />
       <Menu bgColor="dark" fixed onSubmit={_handleOnSubmit} onClick={_handleCloseSideDrawer} />
-      {drawerOpen ? <View style={{ marginLeft: 256 }}>{children}</View> : <View>{children}</View>}
+      {drawerOpen ? <View className={styles.container}>{children}</View> : <View>{children}</View>}
     </>
   );
 };

@@ -81,7 +81,7 @@
     "redux-thunk": "^2.3.0",
     "reselect": "^4.0.0",
     "semantic-ui-react": "^2.0.1",
-    "wiloke-react-core": "^0.0.1-6"
+    "wiloke-react-core": "^0.0.1-9"
   },
   "devDependencies": {
     "@storybook/addon-actions": "^5.3.19",

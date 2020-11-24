@@ -1,10 +1,11 @@
-import { classNames, View, Text, Image } from 'wiloke-react-core';
+import { View, Text, Image } from 'wiloke-react-core';
 import { VideoDocument } from 'models/Videos';
 import React, { CSSProperties, DOMAttributes, FC } from 'react';
 import convertTime from 'utils/functions/formatTime';
 import { formatShortString } from 'utils/functions/formatViewCount';
 import TimeAgo from 'javascript-time-ago';
 import en from 'javascript-time-ago/locale/en';
+import { classNames } from 'wiloke-react-core/utils';
 import styles from './YoutubeCard.module.scss';
 
 export interface YoutubeCardProps {
@@ -25,14 +26,6 @@ const time: TimeAgo = new TimeAgo();
 const YoutubeCard: FC<YoutubeCardProps> = ({ channel, duration, title, uri, className, style, timeAgo, viewCount, isVertical = false, onClick }) => {
   const vertical = isVertical ? styles.vertical : '';
   const combineProps = { style, className: classNames(styles.container, className, vertical) };
-
-  // const srcSet = {
-  //   '500': uri.high.url,
-  //   '768': uri.medium.url,
-  //   '992': uri.high.url,
-  // };
-
-  // const previewSrc = uri;
   return (
     <View {...combineProps} tagName="div" backgroundColor="gray1" onClick={onClick}>
       <View className={styles.thumbnailContainer} tagName="div">
@@ -47,7 +40,7 @@ const YoutubeCard: FC<YoutubeCardProps> = ({ channel, duration, title, uri, clas
           <Text color="dark" tagName="h3" className={styles.title}>
             {title}
           </Text>
-          <Text color="dark3" tagName="p" className={styles.channel}>
+          <Text color="dark3" tagName="p" className={styles.channel} tachyons="mb2">
             {channel}
           </Text>
         </View>

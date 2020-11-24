@@ -1,8 +1,9 @@
 import React from 'react';
 import { Provider, useDispatch } from 'react-redux';
 import { PersistGate } from 'redux-persist/lib/integration/react';
-import { ThemeProvider, ThemeOverrides, getUseDispatchRedux } from 'wiloke-react-core';
+import { ThemeProvider, ThemeOverrides } from 'wiloke-react-core';
 import Routes from 'routes';
+import { getUseDispatchRedux } from 'wiloke-react-core/utils';
 import { store, persistor } from './store/configureStore';
 
 getUseDispatchRedux(useDispatch);

@@ -7,7 +7,7 @@ import CountTo from './base/CountTo';
 
 export default {
   title: 'UI Base/CountTo',
-  component: (CountTo as any).type,
+  component: CountTo,
 };
 
 export const Default = () => {

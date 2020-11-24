@@ -1,5 +1,5 @@
 import { VideoSearchedDoc } from 'models/Videos';
-import { ActionTypes, createReducer, handleAction } from 'wiloke-react-core';
+import { ActionTypes, createReducer, handleAction } from 'wiloke-react-core/utils';
 import { getRelatedVideoAction } from '../actions/getRelatedVideoAction';
 import { searchVideoAction } from '../actions/searchVideosAction';
 

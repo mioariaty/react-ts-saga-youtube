@@ -1,5 +1,5 @@
-import { ProgressLoader as WProgressLoader } from 'wiloke-react-core';
+import { ProgressLoader } from 'wiloke-react-core';
 
-const ProgressLoader = WProgressLoader;
+export const Component = ProgressLoader;
 
-export default ProgressLoader;
+export default Component;

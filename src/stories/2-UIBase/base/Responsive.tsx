@@ -1,6 +1,6 @@
-import { Responsive as WResponsive, useResponsive as WUseResponsive } from 'wiloke-react-core';
+import { Responsive, useResponsive } from 'wiloke-react-core';
 
-const Responsive = WResponsive;
-export const useResponsive = WUseResponsive;
+export const Component = Responsive;
+export const SBUseResponsive = useResponsive;
 
-export default Responsive;
+export default Component;

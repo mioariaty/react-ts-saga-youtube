@@ -1,14 +1,13 @@
-import React, { FC } from 'react';
-import { BrowserRouter, Switch, Route } from 'react-router-dom';
-import HomePage from 'containers/HomePage/HomePage';
 import AboutPage from 'containers/AboutPage/AboutPage';
+import AppLayout from 'containers/AppLayout/AppLayout';
+import HomePage from 'containers/HomePage/HomePage';
 import NotFoundPage from 'containers/NotFoundPage/NotFoundPage';
 import YoutubePage from 'containers/YoutubePage/YoutubePage';
-import YoutubeSearchPage from 'containers/YoutubePage/YoutubeSearchPage';
-
-import { View } from 'wiloke-react-core';
-import AppLayout from 'components/AppLayout/AppLayout';
 import YoutubePlayerPage from 'containers/YoutubePage/YoutubePlayerPage';
+import YoutubeSearchPage from 'containers/YoutubePage/YoutubeSearchPage';
+import React, { FC } from 'react';
+import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import { View } from 'wiloke-react-core';
 import { Page } from './types';
 
 export const pages: Page[] = [

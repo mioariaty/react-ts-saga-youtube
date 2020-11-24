@@ -6,7 +6,7 @@ import Skeleton from './base/Skeleton';
 
 export default {
   title: 'UI Base/Skeleton',
-  component: (Skeleton as any).type,
+  component: Skeleton,
 };
 
 export const Default = () => {

@@ -133,7 +133,7 @@ export const Example = () => {
           </View>
         </View>
         <View columns={[3, 3, 3, 3]}>
-          <Sticky containerSelector="#containerSelectorFocus" offsetTop={20} stickyEnableRange={[768, Infinity]}>
+          <Sticky containerSelector="#containerSelectorFocus" offsetTop={250} stickyEnableRange={[768, Infinity]}>
             <View tachyons="pa3" backgroundColor="primary" color="light" height={1681}>
               <Text tagName="h1" color="light" tachyons="mb3">
                 Long Sidebar

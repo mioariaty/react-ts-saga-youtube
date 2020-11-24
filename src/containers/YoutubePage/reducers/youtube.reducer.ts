@@ -1,5 +1,5 @@
 import { VideoDocument } from 'models/Videos';
-import { ActionTypes, createReducer, handleAction } from 'wiloke-react-core';
+import { ActionTypes, createReducer, handleAction } from 'wiloke-react-core/utils';
 import { getVideoByIdAction } from '../actions/getVideoByIdAction';
 import { getYoutubeVideos } from '../actions/getVideosAction';
 
@@ -10,6 +10,7 @@ interface VideoState {
   message: string;
   data: VideoDocument[];
   videoId: VideoDocument['id'];
+  channelId: VideoDocument['snippet']['channelId'];
 }
 
 const initialState: VideoState = {
@@ -17,6 +18,7 @@ const initialState: VideoState = {
   message: '',
   isLoading: false,
   videoId: '',
+  channelId: '',
 };
 
 export const videoReducer = createReducer<VideoState, VideoAction>(initialState, [
@@ -48,6 +50,7 @@ export const videoReducer = createReducer<VideoState, VideoAction>(initialState,
       isLoading: false,
       data: action.payload.data.items,
       videoId: findId[0].id,
+      channelId: findId[0].snippet.channelId,
     };
   }),
   handleAction('@getVideoByIdFailure', ({ state, action }) => ({

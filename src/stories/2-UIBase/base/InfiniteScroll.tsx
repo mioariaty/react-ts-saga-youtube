@@ -1,5 +1,5 @@
-import { InfiniteScroll as WInfiniteScroll } from 'wiloke-react-core';
+import { InfiniteScroll } from 'wiloke-react-core';
 
-const InfiniteScroll = WInfiniteScroll;
+export const Component = InfiniteScroll;
 
-export default InfiniteScroll;
+export default Component;

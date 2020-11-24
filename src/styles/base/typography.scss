@@ -18,10 +18,15 @@ body {
   font-weight: 400;
   overflow-y: auto;
   overflow-x: hidden;
+  background-color: $color-light;
 }
 
 .main {
   padding: 24px 48px;
+
+  @media (max-width: 768px) {
+    padding: 0 1rem;
+  }
 }
 
 .progressBar {

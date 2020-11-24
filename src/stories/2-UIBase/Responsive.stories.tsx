@@ -1,6 +1,6 @@
 import React from 'react';
 import { Text, View } from 'wiloke-react-core';
-import Responsive, { useResponsive } from './base/Responsive';
+import Responsive, { SBUseResponsive } from './base/Responsive';
 
 export default {
   title: 'UI Base/Responsive',
@@ -37,8 +37,8 @@ export const Default = () => {
   );
 };
 export const UseResponsive = () => {
-  const element1 = useResponsive({ maxWidth: 800, minWidth: 400 });
-  const element2 = useResponsive({ maxWidth: 500, minWidth: 300 });
+  const element1 = SBUseResponsive({ maxWidth: 800, minWidth: 400 });
+  const element2 = SBUseResponsive({ maxWidth: 500, minWidth: 300 });
 
   return (
     <View>

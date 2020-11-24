@@ -1,5 +1,5 @@
-import { MaterialIcon as WMaterialIcon } from 'wiloke-react-core';
+import { MaterialIcon } from 'wiloke-react-core';
 
-const MaterialIcon = WMaterialIcon;
+export const Component = MaterialIcon;
 
-export default MaterialIcon;
+export default Component;

@@ -1,6 +1,5 @@
-import { memo } from 'react';
-import { CountTo as WCountTo } from 'wiloke-react-core';
+import { CountTo } from 'wiloke-react-core';
 
-const CountTo = WCountTo;
+export const Component = CountTo;
 
-export default memo(CountTo);
+export default Component;

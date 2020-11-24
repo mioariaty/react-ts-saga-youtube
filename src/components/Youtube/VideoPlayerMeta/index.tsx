@@ -1,8 +1,8 @@
+import TimeAgo from 'javascript-time-ago';
+import en from 'javascript-time-ago/locale/en';
 import { VideoDocument } from 'models/Videos';
 import React, { FC } from 'react';
 import { MaterialIcon, Text, View } from 'wiloke-react-core';
-import TimeAgo from 'javascript-time-ago';
-import en from 'javascript-time-ago/locale/en';
 import styles from './VideoPlayerMeta.module.scss';
 
 TimeAgo.addLocale(en);
@@ -40,10 +40,10 @@ const VideoPlayerMeta: FC<VideoPlayerMetaProps> = ({ title, viewCount, publishAt
         </View>
         <View tagName="div" tachyons={['flex', 'items-center', 'mb3']} className={styles.actionMeta}>
           <Text color="gray5" tachyons={['flex', 'items-center', 'mr4']}>
-            <MaterialIcon name="sentiment_very_satisfied" /> {likeCount.replace(/(.)(?=(\d{3})+$)/g, '$1,')}
+            <MaterialIcon name="thumb_up" /> &nbsp; {likeCount.replace(/(.)(?=(\d{3})+$)/g, '$1,')}
           </Text>
           <Text color="gray5" tachyons={['flex', 'items-center']}>
-            <MaterialIcon name="sentiment_very_dissatisfied" /> {dislikeCount.replace(/(.)(?=(\d{3})+$)/g, '$1,')}
+            <MaterialIcon name="thumb_down" /> &nbsp; {dislikeCount.replace(/(.)(?=(\d{3})+$)/g, '$1,')}
           </Text>
         </View>
       </View>
