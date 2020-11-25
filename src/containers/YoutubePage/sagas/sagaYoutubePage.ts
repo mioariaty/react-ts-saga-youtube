@@ -1,9 +1,10 @@
+import watchGetChannelById from './watchGetChannelById';
+import watchGetCommentThreads from './watchGetCommentThread';
 import watchGetRelatedVideos from './watchGetRelatedVideos';
 import watchGetVideoById from './watchGetVideoById';
 import watchGetVideos from './watchGetVideos';
 import watchSearchVideo from './watchSearchVideo';
-import watchGetCommentThreads from './watchGetCommentThread';
 
-const sagaYoutubePage = [watchGetVideos, watchSearchVideo, watchGetVideoById, watchGetRelatedVideos, watchGetCommentThreads];
+const sagaYoutubePage = [watchGetVideos, watchSearchVideo, watchGetVideoById, watchGetRelatedVideos, watchGetCommentThreads, watchGetChannelById];
 
 export default sagaYoutubePage;

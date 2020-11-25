@@ -8,11 +8,12 @@ import React, { FC, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { useHistory } from 'react-router';
 import { Endpoint } from 'types/endpoint';
-import { ProgressLoader, Text, View } from 'wiloke-react-core';
+import { ActivityIndicator, ProgressLoader, Text, View } from 'wiloke-react-core';
+import { useGetChannelByIdRequest } from './actions/getChannelByIdAction';
 import { useGetCommentThreadsRequest } from './actions/getComnentThreadAction';
 import { useGetRelatedVideoRequest } from './actions/getRelatedVideoAction';
 import { useGetVideoByIdRequest } from './actions/getVideoByIdAction';
-import { commentSelector, videoSearchSelector, videoSelector } from './selectors';
+import { channelSelector, commentSelector, videoSearchSelector, videoSelector } from './selectors';
 import SkeletonYoutubeCard from './SkeletonYoutubeCard';
 
 const YoutubePlayerPage: FC = () => {
@@ -20,10 +21,13 @@ const YoutubePlayerPage: FC = () => {
   const videoPlayer = useSelector(videoSelector);
   const relatedVideos = useSelector(videoSearchSelector);
   const commentThreads = useSelector(commentSelector);
-  const { videoId } = videoPlayer;
+  const channelById = useSelector(channelSelector);
+
+  const { videoId, channelId } = videoPlayer;
   const getVideoPlayer = useGetVideoByIdRequest();
   const getComments = useGetCommentThreadsRequest();
   const getRelatedVideoRequest = useGetRelatedVideoRequest();
+  const getChannelByIdRequest = useGetChannelByIdRequest();
 
   useEffect(() => {
     getComments({ endpoint: Endpoint.COMMENT_THREAD, videoId: videoId });
@@ -34,6 +38,11 @@ const YoutubePlayerPage: FC = () => {
     getRelatedVideoRequest({ endpoint: Endpoint.SEARCH, videoId: videoId });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [videoId]);
+
+  useEffect(() => {
+    getChannelByIdRequest({ endpoint: Endpoint.CHANNELS, channelId: channelId });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [channelId]);
 
   const _handleVideoPlayer = (videoId: VideoDocument['id'], channelId: VideoDocument['snippet']['channelId']) => () => {
     getVideoPlayer({ endpoint: Endpoint.VIDEOS, videoId: videoId, channelId: channelId });
@@ -91,7 +100,7 @@ const YoutubePlayerPage: FC = () => {
 
   const _renderCommentRequest = () => {
     if (commentThreads.isLoading) {
-      return <SkeletonYoutubeCard item={4} isList imageRatio={100} />;
+      return <ActivityIndicator />;
     }
     // if (commentThreads.message) {
     //   return (
@@ -131,11 +140,21 @@ const YoutubePlayerPage: FC = () => {
     return relatedVideos.data.map(_renderListSearch);
   };
 
+  const _renderChannelRequest = () => {
+    if (channelById.isLoading) {
+      return <SkeletonYoutubeCard item={1} isList />;
+    }
+    if (channelById.message) {
+      return <Text>{channelById.message}</Text>;
+    }
+    console.log(channelById.data);
+  };
   return (
     <View style={{ marginTop: 76 }} tagName="div">
       <View tachyons={['flex', 'flex-wrap']}>
         <View columns={[12, 8, 8]}>
           {_renderVideoPlayer()}
+          {_renderChannelRequest()}
           {_renderCommentRequest()}
         </View>
         <View columns={[12, 4, 4]} tachyons={['pl3', 'pr3']}>

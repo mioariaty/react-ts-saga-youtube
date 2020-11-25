@@ -1,13 +1,13 @@
+import { AppContentReducer } from 'containers/AppLayout/reducers';
+import { authReducer } from 'containers/Auth/reducers/authReducers';
 import { todolist } from 'containers/HomePage/reducers/reducerTodolist';
-import { videoReducer } from 'containers/YoutubePage/reducers/youtube.reducer';
-import { videoSearchReducer } from 'containers/YoutubePage/reducers/videoSearch.reducer';
-import { commentReducer } from 'containers/YoutubePage/reducers/commenst.reducer';
+import { YoutubePageReducer } from 'containers/YoutubePage/reducers';
 
 const reducers = {
   todolist,
-  videoReducer,
-  videoSearchReducer,
-  comments: commentReducer,
+  authReducer,
+  ...YoutubePageReducer,
+  ...AppContentReducer,
 };
 
 export default reducers;

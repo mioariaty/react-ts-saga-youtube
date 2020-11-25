@@ -3,4 +3,5 @@ export enum Endpoint {
   SEARCH = 'search',
   COMMENTS = 'comments',
   COMMENT_THREAD = 'commentThreads',
+  CHANNELS = 'channels',
 }

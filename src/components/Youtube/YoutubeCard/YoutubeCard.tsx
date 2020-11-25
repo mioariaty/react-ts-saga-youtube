@@ -1,10 +1,10 @@
-import { View, Text, Image } from 'wiloke-react-core';
+import TimeAgo from 'javascript-time-ago';
+import en from 'javascript-time-ago/locale/en';
 import { VideoDocument } from 'models/Videos';
 import React, { CSSProperties, DOMAttributes, FC } from 'react';
 import convertTime from 'utils/functions/formatTime';
 import { formatShortString } from 'utils/functions/formatViewCount';
-import TimeAgo from 'javascript-time-ago';
-import en from 'javascript-time-ago/locale/en';
+import { Image, Text, View } from 'wiloke-react-core';
 import { classNames } from 'wiloke-react-core/utils';
 import styles from './YoutubeCard.module.scss';
 
@@ -27,7 +27,7 @@ const YoutubeCard: FC<YoutubeCardProps> = ({ channel, duration, title, uri, clas
   const vertical = isVertical ? styles.vertical : '';
   const combineProps = { style, className: classNames(styles.container, className, vertical) };
   return (
-    <View {...combineProps} tagName="div" backgroundColor="gray1" onClick={onClick}>
+    <View {...combineProps} tagName="div" style={{ backgroundColor: 'transparent' }} onClick={onClick}>
       <View className={styles.thumbnailContainer} tagName="div">
         <Image src={uri} aspectRatioInPercent={56.25} lazyLoad />
         <Text className={styles.dutation} tagName="p" color="light" nightModeBlacklist="color">

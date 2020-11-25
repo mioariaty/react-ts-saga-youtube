@@ -37,7 +37,8 @@ const VideoComment: FC<VideoCommentProps> = ({ authorImage, authorName, commentC
         </View>
         <View>
           <Text tagName="p" color="dark" tachyons={['flex', 'items-center']}>
-            <MaterialIcon name="thumb_up" tachyons="mr2" /> {likeCount}
+            <MaterialIcon name="thumb_up" tachyons="mr2" /> {likeCount} &nbsp;
+            <MaterialIcon name="thumb_down" tachyons="mr2" />
           </Text>
         </View>
       </View>

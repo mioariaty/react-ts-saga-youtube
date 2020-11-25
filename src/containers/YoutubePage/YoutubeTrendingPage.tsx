@@ -4,8 +4,7 @@ import React, { FC, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { useHistory } from 'react-router';
 import { Endpoint } from 'types/endpoint';
-import { GridSmart, ProgressLoader, Text, View } from 'wiloke-react-core';
-import { useGetChannelByIdRequest } from './actions/getChannelByIdAction';
+import { ProgressLoader, Text, View } from 'wiloke-react-core';
 import { useGetCommentThreadsRequest } from './actions/getComnentThreadAction';
 import { useGetRelatedVideoRequest } from './actions/getRelatedVideoAction';
 import { useGetVideoByIdRequest } from './actions/getVideoByIdAction';
@@ -13,18 +12,17 @@ import { useGetVideosRequest } from './actions/getVideosAction';
 import { videoSelector } from './selectors';
 import SkeletonYoutubeCard from './SkeletonYoutubeCard';
 
-const YoutubePage: FC = () => {
-  const history = useHistory();
+const YoutubeTrendingPage: FC = () => {
   const videoList = useSelector(videoSelector);
-
   const getVideoListRequest = useGetVideosRequest();
   const getVideoPlayer = useGetVideoByIdRequest();
   const getRelatedVideo = useGetRelatedVideoRequest();
   const getComments = useGetCommentThreadsRequest();
-  const getChannels = useGetChannelByIdRequest();
+  const history = useHistory();
 
   useEffect(() => {
     getVideoListRequest({ endpoint: Endpoint.VIDEOS });
+
     //eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -33,7 +31,6 @@ const YoutubePage: FC = () => {
       getVideoPlayer({ endpoint: Endpoint.VIDEOS, videoId: videoId, channelId: channelId });
       getRelatedVideo({ endpoint: Endpoint.SEARCH, videoId: videoId });
       getComments({ endpoint: Endpoint.COMMENT_THREAD, videoId: videoId });
-      getChannels({ endpoint: Endpoint.CHANNELS, channelId: channelId });
       history.push(`/youtube/watch?v=${videoId}`);
     };
   };
@@ -49,16 +46,17 @@ const YoutubePage: FC = () => {
         viewCount={item.statistics?.viewCount}
         timeAgo={item.snippet.publishedAt}
         onClick={_handleVideoPlayer(item.id, item.snippet.channelId)}
+        isVertical
       />
     );
   };
 
-  const renderVideoList = () => {
+  const _renderVideoList = () => {
     if (videoList.isLoading) {
       return (
         <>
           <ProgressLoader done={videoList.isLoading} color="danger" containerClassName="progressBar" />
-          <SkeletonYoutubeCard item={8} />
+          <SkeletonYoutubeCard item={10} isList />
         </>
       );
     }
@@ -76,13 +74,14 @@ const YoutubePage: FC = () => {
 
   return (
     <>
-      <View style={{ marginTop: 76 }} tagName="div">
-        <GridSmart columnWidth={350} columnCount={5} columnGap={16}>
-          {renderVideoList()}
-        </GridSmart>
+      <View style={{ marginTop: 76, maxWidth: 960 }} tagName="div" tachyons={['ml-auto', 'mr-auto']}>
+        <View tagName="div" row tachyons={['flex-column']}>
+          {_renderVideoList()}
+          hahah
+        </View>
       </View>
     </>
   );
 };
 
-export default YoutubePage;
+export default YoutubeTrendingPage;

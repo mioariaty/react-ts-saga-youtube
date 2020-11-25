@@ -1,9 +1,10 @@
 import MenuItem from 'components/Menu/Item/MenuItem';
-import { View } from 'wiloke-react-core';
 // import Overlay from 'components/Overlay/Overlay';
 import React, { Component, CSSProperties, DOMAttributes, ReactNode } from 'react';
 import { NavLink } from 'react-router-dom';
+import { pages } from 'routes';
 import classNames from 'utils/functions/classNames';
+import { View } from 'wiloke-react-core';
 import styles from './Sidedrawer.module.scss';
 
 export interface SideDrawerProps {
@@ -32,15 +33,15 @@ class SideDrawer extends Component<SideDrawerProps, {}> {
         {/* {open && <Overlay onClick={onClose} />} */}
         <View tagName="div" backgroundColor="gray1" {...combineProps}>
           <div className={styles.navMenuItems}>
-            <NavLink to="/">
-              <MenuItem className={styles.navItem}>Home</MenuItem>
-            </NavLink>
-            <NavLink to="/about">
-              <MenuItem className={styles.navItem}>About</MenuItem>
-            </NavLink>
-            <NavLink exact to="/youtube" activeClassName={styles.active} className={styles.navItem}>
-              <MenuItem>Youtube</MenuItem>
-            </NavLink>
+            {pages.map(navItem => {
+              if (navItem.name) {
+                return (
+                  <NavLink exact={navItem.exact} activeClassName={styles.active} to={navItem.path} className={styles.navItem}>
+                    <MenuItem>{navItem.name}</MenuItem>
+                  </NavLink>
+                );
+              }
+            })}
           </div>
         </View>
       </>

@@ -1,11 +1,9 @@
 import Input from 'components/Input/Input';
 import React, { CSSProperties, DOMAttributes, FC, FormEvent, useState } from 'react';
+import * as FaIcons from 'react-icons/fa';
 import { Link } from 'react-router-dom';
 import classNames from 'utils/functions/classNames';
-import * as FaIcons from 'react-icons/fa';
-import { MaterialIcon, View } from 'wiloke-react-core';
-import { Button } from 'wiloke-react-core';
-
+import { Button, MaterialIcon, Switch, View } from 'wiloke-react-core';
 import MenuItem from './Item/MenuItem';
 import styles from './Menu.module.scss';
 
@@ -18,6 +16,8 @@ export interface MenuProps {
   onSubmit: (term: string) => void;
   valueForm?: string;
   onClick?: DOMAttributes<HTMLElement>['onClick'];
+  isNightMode?: boolean;
+  onChangeNightMode?: ({ checked, event }: { checked: boolean; event: React.MouseEvent<HTMLElement, MouseEvent> }) => void;
 }
 
 const Menu: FC<MenuProps> = ({
@@ -28,6 +28,8 @@ const Menu: FC<MenuProps> = ({
   bgColor = 'light',
   logo = 'https://i.pinimg.com/originals/de/1c/91/de1c91788be0d791135736995109272a.png',
   onClick,
+  onChangeNightMode,
+  isNightMode = false,
 }) => {
   const [term, setTerm] = useState('');
 
@@ -54,7 +56,7 @@ const Menu: FC<MenuProps> = ({
       <div className={styles.formContainer}>
         <form onSubmit={_handleSubmit}>
           <div className={styles.formGroup}>
-            <Input value={term} sizeInput="small" onChange={_handleOnChange} style={{ borderRadius: 0 }} />
+            <Input value={term} sizeInput="small" onChange={_handleOnChange} style={{ borderRadius: 0 }} placeholder="Tìm kiếm" />
             <Button type="submit" backgroundColor="gray2" size="small" tachyons={['flex', 'items-center']} style={{ padding: '1px 12px' }}>
               <MaterialIcon name="search" />
             </Button>
@@ -62,6 +64,7 @@ const Menu: FC<MenuProps> = ({
         </form>
       </div>
       <div className={styles.body}>
+        <Switch checked={isNightMode} onChange={onChangeNightMode} /> &nbsp;
         <MenuItem href="#">Login</MenuItem>
       </div>
     </View>

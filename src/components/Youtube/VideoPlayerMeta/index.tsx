@@ -21,6 +21,7 @@ export interface VideoPlayerMetaProps {
 }
 
 const VideoPlayerMeta: FC<VideoPlayerMetaProps> = ({ title, viewCount, publishAt, likeCount, dislikeCount }) => {
+  const regex = /(.)(?=(\d{3})+$)/g;
   return (
     <View tagName="div" className={styles.container}>
       <Text tagName="h2" color="dark" tachyons="mb3" className={styles.title}>
@@ -29,7 +30,7 @@ const VideoPlayerMeta: FC<VideoPlayerMetaProps> = ({ title, viewCount, publishAt
       <View tagName="div" tachyons={['flex', 'justify-between']}>
         <View tagName="div" tachyons={['flex', 'items-center']} className={styles.view}>
           <Text color="gray5" tagName="p">
-            {viewCount.replace(/(.)(?=(\d{3})+$)/g, '$1,')} views
+            {viewCount.replace(regex, '$1,')} views
           </Text>
           <Text color="gray5" tachyons={['mr3', 'ml3']}>
             -
@@ -40,10 +41,10 @@ const VideoPlayerMeta: FC<VideoPlayerMetaProps> = ({ title, viewCount, publishAt
         </View>
         <View tagName="div" tachyons={['flex', 'items-center', 'mb3']} className={styles.actionMeta}>
           <Text color="gray5" tachyons={['flex', 'items-center', 'mr4']}>
-            <MaterialIcon name="thumb_up" /> &nbsp; {likeCount.replace(/(.)(?=(\d{3})+$)/g, '$1,')}
+            <MaterialIcon name="thumb_up" /> &nbsp; {likeCount.replace(regex, '$1,')}
           </Text>
           <Text color="gray5" tachyons={['flex', 'items-center']}>
-            <MaterialIcon name="thumb_down" /> &nbsp; {dislikeCount.replace(/(.)(?=(\d{3})+$)/g, '$1,')}
+            <MaterialIcon name="thumb_down" /> &nbsp; {dislikeCount.replace(regex, '$1,')}
           </Text>
         </View>
       </View>

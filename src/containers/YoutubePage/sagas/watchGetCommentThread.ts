@@ -20,6 +20,7 @@ function* handleGetCommentThreads({ payload }: ReturnType<typeof getCommentThrea
         maxResults: 30,
       },
     });
+
     yield put(getCommentThreadAction.success({ data: response.data }));
   } catch (error) {
     yield put(getCommentThreadAction.failure({ message: error.message }));

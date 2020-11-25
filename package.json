@@ -81,7 +81,7 @@
     "redux-thunk": "^2.3.0",
     "reselect": "^4.0.0",
     "semantic-ui-react": "^2.0.1",
-    "wiloke-react-core": "^0.0.1-9"
+    "wiloke-react-core": "^0.0.1-24"
   },
   "devDependencies": {
     "@storybook/addon-actions": "^5.3.19",
@@ -116,7 +116,7 @@
     "@typescript-eslint/eslint-plugin": "^2.8.0",
     "@typescript-eslint/parser": "^2.8.0",
     "@typescript-eslint/typescript-estree": "^2.8.0",
-    "chromatic": "^5.1.0",
+    "chromatic": "^5.4.0",
     "cross-env": "^6.0.3",
     "eslint": "^6.6.0",
     "eslint-config-airbnb": "^18.0.1",
