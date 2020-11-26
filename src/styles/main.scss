@@ -4,3 +4,27 @@
 @import './base/typography.scss';
 @import './base/helpers.scss';
 @import './base/reset.scss';
+
+@include createGrid((
+  container: (
+    width: 1300,
+    gap: 15
+  ),
+  columns: (
+    max: 12,
+    gap: 30
+  ),
+  breakpoints: (
+    default: xs,
+    sm: 768,
+    md: 992,
+    lg: 1300
+  )
+));
+
+@include createGridEqual((
+  xs: 'default',
+  sm: 768,
+  md: 992,
+  lg: 1300
+));

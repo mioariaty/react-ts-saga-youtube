@@ -10,7 +10,7 @@ interface ToggleState {
   isNightMode: ThemeType['nightMode'];
 }
 const initialState: ToggleState = {
-  isNightMode: false,
+  isNightMode: true,
 };
 
 export const toggleReducer = createReducer<ToggleState, ToggleAction>(initialState, [

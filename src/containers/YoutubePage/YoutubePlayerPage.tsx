@@ -1,7 +1,9 @@
 import VideoComment from 'components/Youtube/VideoComment';
+import VideoPlayerChannel from 'components/Youtube/VideoPlayerChannel';
 import VideoPlayerMeta from 'components/Youtube/VideoPlayerMeta';
 import YoutubeCard from 'components/Youtube/YoutubeCard/YoutubeCard';
 import VideoPlayer from 'components/Youtube/YoutubePlayer';
+import Navigation from 'containers/Navigation/Navigation';
 import { CommentThreadDocument } from 'models/Comments';
 import { VideoDocument, VideoSearchedDoc } from 'models/Videos';
 import React, { FC, useEffect } from 'react';
@@ -148,23 +150,29 @@ const YoutubePlayerPage: FC = () => {
       return <Text>{channelById.message}</Text>;
     }
     console.log(channelById.data);
+    return channelById.data.map(item => (
+      <VideoPlayerChannel avatar={item.snippet.thumbnails.default.url} title={item.snippet.title} followCounts={item.statistics.subscriberCount} />
+    ));
   };
   return (
-    <View style={{ marginTop: 76 }} tagName="div">
-      <View tachyons={['flex', 'flex-wrap']}>
-        <View columns={[12, 8, 8]}>
-          {_renderVideoPlayer()}
-          {_renderChannelRequest()}
-          {_renderCommentRequest()}
-        </View>
-        <View columns={[12, 4, 4]} tachyons={['pl3', 'pr3']}>
-          <Text tagName="p" color="dark4" tachyons="mb3" style={{ fontSize: 24 }}>
-            Related Videos
-          </Text>
-          {_renderRelatedVideos()}
+    <>
+      <Navigation />
+      <View style={{ marginTop: 76 }} tagName="div">
+        <View tachyons={['flex', 'flex-wrap']}>
+          <View columns={[12, 8, 8]}>
+            {_renderVideoPlayer()}
+            {_renderChannelRequest()}
+            {_renderCommentRequest()}
+          </View>
+          <View columns={[12, 4, 4]} tachyons={['pl3', 'pr3']}>
+            <Text tagName="p" color="dark4" tachyons="mb3" style={{ fontSize: 24 }}>
+              Related Videos
+            </Text>
+            {_renderRelatedVideos()}
+          </View>
         </View>
       </View>
-    </View>
+    </>
   );
 };
 export default YoutubePlayerPage;

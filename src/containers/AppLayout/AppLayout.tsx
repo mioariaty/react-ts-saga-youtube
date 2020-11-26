@@ -1,14 +1,8 @@
-import Menu from 'components/Menu/Menu';
-import SideDrawer from 'components/SideDrawer/SideDrawer';
-import { useSearchVideosRequest } from 'containers/YoutubePage/actions/searchVideosAction';
 import { nightModeSelector } from 'containers/YoutubePage/selectors';
-import React, { useState } from 'react';
+import React from 'react';
 import { useSelector } from 'react-redux';
-import { useHistory } from 'react-router';
 import Routes from 'routes';
-import { Endpoint } from 'types/endpoint';
 import { ThemeOverrides, ThemeProvider } from 'wiloke-react-core';
-import { useNightModeAction } from './actions/toggleNightModeAction';
 
 export const themeOverrides: ThemeOverrides = {
   colors: {
@@ -43,41 +37,13 @@ export const themeOverrides: ThemeOverrides = {
 };
 
 const AppLayout = () => {
-  const [drawerOpen, setDrawerOpen] = useState(true);
   const nightModeReducer = useSelector(nightModeSelector);
   const { isNightMode } = nightModeReducer;
-  const getNightMode = useNightModeAction();
-
-  const getSearchedVideo = useSearchVideosRequest();
-  const history = useHistory();
-
-  const _handleCloseSideDrawer = () => {
-    setDrawerOpen(drawerOpen => !drawerOpen);
-  };
-
-  const _handleOnSubmit = (params: string) => {
-    getSearchedVideo({ endpoint: Endpoint.SEARCH, keyword: params });
-    history.push(`/search?q=${params}`);
-  };
-
-  const _handleToggleNightMode = () => {
-    getNightMode(isNightMode);
-  };
 
   const customTheme = { ...themeOverrides, nightMode: isNightMode };
   return (
     <ThemeProvider themeOverrides={customTheme}>
-      <Routes>
-        <SideDrawer open={drawerOpen} onClose={_handleCloseSideDrawer} />
-        <Menu
-          bgColor="dark"
-          fixed
-          onSubmit={_handleOnSubmit}
-          onClick={_handleCloseSideDrawer}
-          isNightMode={isNightMode}
-          onChangeNightMode={_handleToggleNightMode}
-        />
-      </Routes>
+      <Routes />
     </ThemeProvider>
   );
 };

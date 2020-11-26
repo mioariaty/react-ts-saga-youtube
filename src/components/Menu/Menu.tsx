@@ -45,7 +45,7 @@ const Menu: FC<MenuProps> = ({
   const isFixed = fixed ? styles.fixed : undefined;
   const combineProps = { style, className: classNames(styles.container, className, isFixed, styles[bgColor]) };
   return (
-    <View tagName="div" backgroundColor="gray1" {...combineProps}>
+    <View tagName="div" backgroundColor="dark1" nightModeBlacklist="backgroundColor" {...combineProps}>
       <MenuItem className={styles.logo}>
         <FaIcons.FaBars style={{ marginRight: 16 }} onClick={onClick as any} />
         <Link to="/youtube" className="no-underline flex-center">
@@ -57,7 +57,14 @@ const Menu: FC<MenuProps> = ({
         <form onSubmit={_handleSubmit}>
           <div className={styles.formGroup}>
             <Input value={term} sizeInput="small" onChange={_handleOnChange} style={{ borderRadius: 0 }} placeholder="Tìm kiếm" />
-            <Button type="submit" backgroundColor="gray2" size="small" tachyons={['flex', 'items-center']} style={{ padding: '1px 12px' }}>
+            <Button
+              type="submit"
+              backgroundColor="dark2"
+              nightModeBlacklist="backgroundColor"
+              size="small"
+              tachyons={['flex', 'items-center']}
+              style={{ padding: '1px 12px' }}
+            >
               <MaterialIcon name="search" />
             </Button>
           </div>

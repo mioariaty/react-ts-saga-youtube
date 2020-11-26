@@ -21,13 +21,11 @@ const SkeletonYoutubeCard: FC<SkeletonYoutubeCardProps> = ({ item, isList = fals
     );
   }
   return (
-    <View>
-      <GridSmart columnWidth={350} columnGap={30}>
-        {range(0, item).map(skeItem => (
-          <Skeleton key={String(skeItem)} color="gray5" imageAspectRatioPercent={56.25} textNumberLines={3} />
-        ))}
-      </GridSmart>
-    </View>
+    <GridSmart columnWidth={350} columnGap={16}>
+      {range(0, item).map(_item => {
+        return <Skeleton key={_item} textNumberLines={3} imageAspectRatioPercent={56.25} />;
+      })}
+    </GridSmart>
   );
 };
 export default SkeletonYoutubeCard;

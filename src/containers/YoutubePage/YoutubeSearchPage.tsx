@@ -1,12 +1,13 @@
-import { ProgressLoader, Text, View } from 'wiloke-react-core';
+import YoutubeCard from 'components/Youtube/YoutubeCard/YoutubeCard';
+import Navigation from 'containers/Navigation/Navigation';
 import { VideoDocument, VideoSearchedDoc } from 'models/Videos';
 import React, { FC, useEffect } from 'react';
-import YoutubeCard from 'components/Youtube/YoutubeCard/YoutubeCard';
 import { useSelector } from 'react-redux';
-import { Endpoint } from 'types/endpoint';
 import { useHistory } from 'react-router';
-import { videoSearchSelector } from './selectors';
+import { Endpoint } from 'types/endpoint';
+import { ProgressLoader, Text, View } from 'wiloke-react-core';
 import { useGetVideoByIdRequest } from './actions/getVideoByIdAction';
+import { videoSearchSelector } from './selectors';
 import SkeletonYoutubeCard from './SkeletonYoutubeCard';
 
 const YoutubeSearchPage: FC = () => {
@@ -61,11 +62,14 @@ const YoutubeSearchPage: FC = () => {
   };
 
   return (
-    <View style={{ marginTop: 76, maxWidth: 960 }} tagName="div" tachyons={['ml-auto', 'mr-auto']}>
-      <View tagName="div" row tachyons={['flex-column']}>
-        {_renderVideoList()}
+    <>
+      <Navigation />
+      <View style={{ marginTop: 76, maxWidth: 960 }} tagName="div" tachyons={['ml-auto', 'mr-auto']}>
+        <View tagName="div" row tachyons={['flex-column']}>
+          {_renderVideoList()}
+        </View>
       </View>
-    </View>
+    </>
   );
 };
 export default YoutubeSearchPage;

@@ -1,5 +1,6 @@
 import React, { DOMAttributes, FC } from 'react';
 import { createPortal } from 'react-dom';
+import { View } from 'wiloke-react-core';
 import styles from './Overlay.module.scss';
 
 export interface OverlayProps {
@@ -8,7 +9,7 @@ export interface OverlayProps {
 }
 
 const Overlay: FC<OverlayProps> = ({ onClick, show }) => {
-  const overlay = show && <div className={styles.container} onClick={onClick}></div>;
+  const overlay = show && <View tagName="div" className={styles.container} onClick={onClick}></View>;
   return createPortal(overlay, document.body);
 };
 export default Overlay;

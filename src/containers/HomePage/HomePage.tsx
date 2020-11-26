@@ -1,5 +1,6 @@
 import GridGeneric from 'components/GridGeneric/GridGeneric';
 import Aaa from 'components/test';
+import Navigation from 'containers/Navigation/Navigation';
 import React, { FC } from 'react';
 import { useSelector } from 'react-redux';
 import { Button, LineAwesome, Text, View } from 'wiloke-react-core';
@@ -27,6 +28,7 @@ const HomePage: FC = () => {
 
   return (
     <div>
+      <Navigation />
       <h1>
         <Aaa />
       </h1>

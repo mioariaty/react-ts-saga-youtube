@@ -1,4 +1,5 @@
 import YoutubeCard from 'components/Youtube/YoutubeCard/YoutubeCard';
+import Navigation from 'containers/Navigation/Navigation';
 import { VideoDocument } from 'models/Videos';
 import React, { FC, useEffect } from 'react';
 import { useSelector } from 'react-redux';
@@ -58,7 +59,7 @@ const YoutubePage: FC = () => {
       return (
         <>
           <ProgressLoader done={videoList.isLoading} color="danger" containerClassName="progressBar" />
-          <SkeletonYoutubeCard item={8} />
+          <SkeletonYoutubeCard item={8} isList={false} />
         </>
       );
     }
@@ -76,6 +77,7 @@ const YoutubePage: FC = () => {
 
   return (
     <>
+      <Navigation />
       <View style={{ marginTop: 76 }} tagName="div">
         <GridSmart columnWidth={350} columnCount={5} columnGap={16}>
           {renderVideoList()}

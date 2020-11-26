@@ -1,4 +1,5 @@
 import YoutubeCard from 'components/Youtube/YoutubeCard/YoutubeCard';
+import Navigation from 'containers/Navigation/Navigation';
 import { VideoDocument } from 'models/Videos';
 import React, { FC, useEffect } from 'react';
 import { useSelector } from 'react-redux';
@@ -74,6 +75,7 @@ const YoutubeTrendingPage: FC = () => {
 
   return (
     <>
+      <Navigation />
       <View style={{ marginTop: 76, maxWidth: 960 }} tagName="div" tachyons={['ml-auto', 'mr-auto']}>
         <View tagName="div" row tachyons={['flex-column']}>
           {_renderVideoList()}

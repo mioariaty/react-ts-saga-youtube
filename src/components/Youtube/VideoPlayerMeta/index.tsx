@@ -2,7 +2,7 @@ import TimeAgo from 'javascript-time-ago';
 import en from 'javascript-time-ago/locale/en';
 import { VideoDocument } from 'models/Videos';
 import React, { FC } from 'react';
-import { MaterialIcon, Text, View } from 'wiloke-react-core';
+import { Divider, MaterialIcon, Text, View } from 'wiloke-react-core';
 import styles from './VideoPlayerMeta.module.scss';
 
 TimeAgo.addLocale(en);
@@ -27,7 +27,7 @@ const VideoPlayerMeta: FC<VideoPlayerMetaProps> = ({ title, viewCount, publishAt
       <Text tagName="h2" color="dark" tachyons="mb3" className={styles.title}>
         {title}
       </Text>
-      <View tagName="div" tachyons={['flex', 'justify-between']}>
+      <View tagName="div" tachyons={['flex', 'justify-between', 'mb4']}>
         <View tagName="div" tachyons={['flex', 'items-center']} className={styles.view}>
           <Text color="gray5" tagName="p">
             {viewCount.replace(regex, '$1,')} views
@@ -48,6 +48,8 @@ const VideoPlayerMeta: FC<VideoPlayerMetaProps> = ({ title, viewCount, publishAt
           </Text>
         </View>
       </View>
+
+      <Divider tachyons="mb2" />
     </View>
   );
 };

@@ -47,7 +47,7 @@ export const pages: Page[] = [
   },
 ];
 
-const Routes: FC = ({ children }) => {
+const Routes: FC = () => {
   return (
     <BrowserRouter>
       <View tagName="main" backgroundColor="light" className="main">
@@ -57,7 +57,6 @@ const Routes: FC = ({ children }) => {
           })}
           <Route component={NotFoundPage} />
         </Switch>
-        {children}
       </View>
       <footer></footer>
     </BrowserRouter>
