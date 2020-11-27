@@ -14,7 +14,7 @@ const InfiniteScroll: FC<InfiniteScrollProps> = ({ callback, children, isLoading
       {children}
       <Waypoint onEnter={callback} bottomOffset="-15px">
         <div className={styles.container}>
-          <Loader active={isLoading} />
+          <Loader active={isLoading} inline="centered" />
         </div>
       </Waypoint>
     </>

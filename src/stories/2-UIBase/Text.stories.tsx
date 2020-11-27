@@ -1,7 +1,8 @@
 import React from 'react';
-import { View, Text } from 'core';
 import getWithStylesProps from 'stories/utils/getWithStylesProps';
 import { number } from '@storybook/addon-knobs';
+import { View } from 'wiloke-react-core';
+import Text from './base/Text';
 
 export default {
   title: 'UI Base/Text',

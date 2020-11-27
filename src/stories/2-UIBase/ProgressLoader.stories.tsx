@@ -1,6 +1,6 @@
 import React from 'react';
-import { ProgressLoader } from 'core';
 import { boolean } from '@storybook/addon-knobs';
+import ProgressLoader from './base/ProgressLoader';
 
 export default {
   title: 'UI Base/ProgressLoader',

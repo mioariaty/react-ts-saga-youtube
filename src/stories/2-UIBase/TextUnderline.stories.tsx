@@ -1,8 +1,8 @@
 import React from 'react';
-import { TextUnderline, View } from 'core';
 import { text, number, color, select } from '@storybook/addon-knobs';
 import getOptions from 'stories/utils/getOptions';
-import defaultColors from 'core/themes/defaultColors';
+import { View, defaultColors } from 'wiloke-react-core';
+import TextUnderline from './base/TextUnderline';
 
 export default {
   title: 'UI Base/TextUnderline',

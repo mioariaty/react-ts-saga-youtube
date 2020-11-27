@@ -1,8 +1,9 @@
 import React from 'react';
-import { Alert, AlertProps, Radius } from 'core';
 import { number, optionsKnob, select, text, boolean } from '@storybook/addon-knobs';
 import getOptions from 'stories/utils/getOptions';
 import { action } from '@storybook/addon-actions';
+import { AlertProps, Radius } from 'wiloke-react-core';
+import Alert from './base/Alert';
 
 export default {
   title: 'UI Base/Alert',

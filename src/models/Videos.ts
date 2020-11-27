@@ -9,7 +9,7 @@ export interface VideoThumbnails {
     width: number;
     height: number;
   };
-  high?: {
+  high: {
     url: string;
     width: number;
     height: number;
@@ -19,13 +19,12 @@ export interface VideoThumbnails {
     width: number;
     height: number;
   };
-  maxres?: {
+  maxres: {
     url: string;
     width: number;
     height: number;
   };
 }
-
 export interface VideoDocument {
   id: string;
   kind: string;
@@ -53,8 +52,67 @@ export interface VideoDocument {
     projection: string;
     videoId: string;
   };
+  statistics: {
+    commentCount: string;
+    dislikeCount: string;
+    favoriteCount: string;
+    likeCount: string;
+    viewCount: string;
+  };
+}
+
+export interface VideoSearchedDoc {
+  id: {
+    kind: string;
+    videoId: string;
+  };
+  snippet: {
+    channelId: string;
+    channelTitle: string;
+    description: string;
+    liveBroadcastContent: string;
+    publishTime: string;
+    publishedAt: string;
+    title: string;
+    thumbnails: VideoThumbnails;
+  };
 }
 
 export interface VideosModel {
+  pageInfo?: {
+    resultsPerPage: number;
+    totalResults: number;
+  };
   items: VideoDocument[];
+}
+export interface VideosSearchModel {
+  pageInfo?: {
+    resultsPerPage: number;
+    totalResults: number;
+  };
+  items: VideoSearchedDoc[];
+}
+
+export interface VideoParams {
+  key: string;
+  part: string;
+  maxResults?: number;
+  q: string;
+}
+
+export interface VideoCardInteface {
+  id: string;
+  thumbnails: VideoThumbnails;
+  title: string;
+  channelTitle: string;
+  duration: string;
+}
+
+export interface SearchParams {
+  keyword: string;
+  v: string;
+}
+
+export interface VideoPlayerParam {
+  id: string;
 }

@@ -1,4 +1,4 @@
-import React, { CSSProperties, FC, ReactNode, ButtonHTMLAttributes, DOMAttributes } from 'react';
+import React, { ButtonHTMLAttributes, CSSProperties, DOMAttributes, FC, ReactNode, useRef } from 'react';
 import classNames from 'utils/functions/classNames';
 import styles from './Button.module.scss';
 
@@ -19,9 +19,13 @@ export interface ButtonProps {
   onClick?: DOMAttributes<HTMLElement>['onClick'];
   /** Thuộc tính màu của button */
   color?: 'primary' | 'secondary' | 'danger' | 'success';
+  borderRaius?: number;
 }
 
-const Button: FC<ButtonProps> = ({ children, href, style, className, type = 'button', onClick, size = 'medium', color = 'primary' }) => {
+const Button: FC<ButtonProps> = ({ children, href, style, className, type = 'button', onClick, size = 'medium', color = 'primary', borderRaius }) => {
+  const buttonRef = useRef(null);
+  console.log(buttonRef.current);
+
   const generalProps = { style, className: classNames(styles.container, className, styles[size], styles[color]) };
   if (!!href) {
     return (
@@ -31,7 +35,7 @@ const Button: FC<ButtonProps> = ({ children, href, style, className, type = 'but
     );
   }
   return (
-    <button {...generalProps} type={type} onClick={onClick}>
+    <button ref={buttonRef} {...generalProps} type={type} onClick={onClick} style={{ borderRadius: `${borderRaius}px` }}>
       {children}
     </button>
   );

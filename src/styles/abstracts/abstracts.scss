@@ -1,1 +1,8 @@
-@import 'core/styles/themes.scss';
+@import '~wiloke-react-core/styles/themes.scss';
+// @import '~wiloke-react-core/styles/variables.scss';
+
+@import 'include-media.scss';
+@import 'poly-fluid-sizing.scss';
+@import 'variables.scss';
+@import 'functions.scss';
+@import 'mixins.scss';

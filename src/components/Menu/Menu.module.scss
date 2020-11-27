@@ -6,6 +6,7 @@
   padding: 0 16px;
   height: 56px;
   justify-content: space-between;
+  overflow: hidden;
   // z-index: 200;
 }
 
@@ -23,6 +24,7 @@
   top: 0;
   left: 0;
   width: 100%;
+  z-index: 101;
 }
 
 .light {

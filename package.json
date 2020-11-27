@@ -17,7 +17,14 @@
     "release": "yarn test-all && zip -r ${npm_package_name}-build.zip build && release-it \"$1\" && rm ${npm_package_name}-build.zip",
     "storybook": "start-storybook -p 9009 -s public",
     "build-storybook": "build-storybook -s public",
-    "storybook-docs": "start-storybook --docs"
+    "storybook-docs": "start-storybook --docs",
+    "rcg": "rc-generate",
+    "stories-eject": "stories-eject"
+  },
+  "rc-generate": {
+    "baseUrl": "src",
+    "typescript": true,
+    "reactNative": false
   },
   "lint-staged": {
     "*.{ts,tsx}": [
@@ -50,11 +57,15 @@
     "@types/gapi": "^0.0.39",
     "@types/gapi.client.youtube": "^3.0.1",
     "@types/javascript-time-ago": "^2.0.1",
+    "@types/lodash": "^4.14.165",
     "@types/react-helmet": "^6.1.0",
     "axios": "^0.19.0",
     "javascript-time-ago": "^2.3.3",
+    "lodash": "^4.17.20",
     "qs": "^6.9.1",
+    "query-string": "^6.13.7",
     "ramda": "^0.26.1",
+    "rc-generate": "^0.4.0",
     "react": "^16.12.0",
     "react-dom": "^16.12.0",
     "react-helmet": "^6.1.0",
@@ -69,7 +80,8 @@
     "redux-saga": "^1.1.3",
     "redux-thunk": "^2.3.0",
     "reselect": "^4.0.0",
-    "semantic-ui-react": "^2.0.1"
+    "semantic-ui-react": "^2.0.1",
+    "wiloke-react-core": "^0.0.1-29"
   },
   "devDependencies": {
     "@storybook/addon-actions": "^5.3.19",
@@ -104,7 +116,7 @@
     "@typescript-eslint/eslint-plugin": "^2.8.0",
     "@typescript-eslint/parser": "^2.8.0",
     "@typescript-eslint/typescript-estree": "^2.8.0",
-    "chromatic": "^5.1.0",
+    "chromatic": "^5.4.0",
     "cross-env": "^6.0.3",
     "eslint": "^6.6.0",
     "eslint-config-airbnb": "^18.0.1",

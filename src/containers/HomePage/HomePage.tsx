@@ -1,14 +1,14 @@
-import React, { FC } from 'react';
 import GridGeneric from 'components/GridGeneric/GridGeneric';
+import Navigation from 'containers/Navigation/Navigation';
+import React, { FC } from 'react';
 import { useSelector } from 'react-redux';
-import { Button, LineAwesome, Text, View } from 'core';
-import { todolistSelector } from './selectors';
+import { Button, LineAwesome, Text, View } from 'wiloke-react-core';
 import { useGetTodolistRequest } from './actions/actionTodolist';
+import { todolistSelector } from './selectors';
 
 const HomePage: FC = () => {
   const todolist = useSelector(todolistSelector);
   const getTodolistRequest = useGetTodolistRequest();
-
   const handleGetTodolist = () => {
     getTodolistRequest({ endpoint: 'todolist' });
   };
@@ -27,7 +27,7 @@ const HomePage: FC = () => {
 
   return (
     <div>
-      <h1>HomePage</h1>
+      <Navigation />
       <button onClick={handleGetTodolist}>Get todolist</button>
       <h2>Grid generic type</h2>
       {renderTodolist()}

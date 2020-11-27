@@ -1,7 +1,9 @@
-import { all, call, spawn, delay } from 'redux-saga/effects';
+import authSaga from 'containers/Auth/sagas/sagasLoginPage';
 import sagaHomePage from 'containers/HomePage/sagas/sagaHomePage';
+import { all, call, delay, spawn } from 'redux-saga/effects';
+import sagaYoutubePage from '../containers/YoutubePage/sagas/sagaYoutubePage';
 
-const sagas = [...sagaHomePage];
+const sagas = [...sagaHomePage, ...sagaYoutubePage, ...authSaga];
 
 // https://github.com/redux-saga/redux-saga/issues/760#issuecomment-273737022
 const makeRestartable = (saga: any) => {

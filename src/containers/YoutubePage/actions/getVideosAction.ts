@@ -1,12 +1,10 @@
 import { VideosModel } from 'models/Videos';
-// import { Endpoint } from 'types/endpoint';
-import { createAsyncAction } from 'utils/functions/reduxActions';
+import { Endpoint } from 'types/endpoint';
+import { createAsyncAction, createDispatchAction } from 'wiloke-react-core/utils';
 
 export const getYoutubeVideos = createAsyncAction(['@getVideosRequest', '@getVideosSuccess', '@getVideosFailure'])<
-  // { endpoint: Endpoint.VIDEOS },
-  null,
-  { data: VideosModel['items'] },
+  { endpoint: Endpoint.VIDEOS },
+  { data: VideosModel },
   { message: string }
 >();
-
-// export const useGetVideosRequest = createDispatchAction(getYoutubeVideos.request);
+export const useGetVideosRequest = createDispatchAction(getYoutubeVideos.request);
