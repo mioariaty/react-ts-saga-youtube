@@ -1,25 +1,30 @@
-import React, { CSSProperties, FC, ReactNode } from 'react';
-import { Text, View, withTachyons, WithTachyonsProps } from 'wiloke-react-core';
+import React, { CSSProperties, FC, ReactElement, ReactNode } from 'react';
+import { Text, View, WithStylesProps, withTachyons, WithTachyonsProps } from 'wiloke-react-core';
 import { classNames } from 'wiloke-react-core/utils';
 import styles from './Field.module.scss';
 
+interface LabelOptions {
+  text: string;
+  link?: ReactElement;
+}
 export interface FieldProps extends WithTachyonsProps {
   children: ReactNode;
   /** Label của field có thể có hoặc không */
-  label?: string;
+  label?: LabelOptions;
   /** style inline field */
   style?: CSSProperties;
   /** override className của field */
   className?: string;
+  color?: WithStylesProps['color'];
 }
 
-const FieldComponent: FC<FieldProps> = ({ label, children, style, className }) => {
+const FieldComponent: FC<FieldProps> = ({ label, children, style, className, color = 'dark3' }) => {
   const combineProps = { style, className: classNames(styles.container, className) };
   return (
     <View {...combineProps}>
       {!!label && (
-        <Text color="dark4" tagName="p" className={styles.label}>
-          {label}
+        <Text color={color} tagName="p" className={styles.label} tachyons="mb2">
+          {label.text} {label.link}
         </Text>
       )}
       {children}

@@ -1,4 +1,4 @@
-import React, { FC, ReactNode } from 'react';
+import React, { CSSProperties, FC, ReactNode } from 'react';
 import { ColorKey, View } from 'wiloke-react-core';
 import { classNames } from 'wiloke-react-core/utils';
 import styles from './Section.module.scss';
@@ -8,11 +8,13 @@ export interface SectionProps {
   backgroundColorNative?: string;
   backgroundType?: 'full' | 'left' | 'right';
   backgroundColor?: ColorKey;
+  style?: CSSProperties;
 }
 
-const Section: FC<SectionProps> = ({ children, backgroundColorNative, backgroundColor, backgroundType = 'full' }) => {
+const Section: FC<SectionProps> = ({ style, children, backgroundColorNative, backgroundColor, backgroundType = 'full' }) => {
+  const generalSetting = { style, className: classNames(styles.container) };
   return (
-    <View tagName="section" className={styles.container}>
+    <View tagName="section" {...generalSetting}>
       <View
         className={classNames(styles.background, styles[backgroundType])}
         style={{ backgroundColor: backgroundColorNative }}
