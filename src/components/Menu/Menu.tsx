@@ -18,6 +18,7 @@ export interface MenuProps {
   onClick?: DOMAttributes<HTMLElement>['onClick'];
   isNightMode?: boolean;
   onChangeNightMode?: ({ checked, event }: { checked: boolean; event: React.MouseEvent<HTMLElement, MouseEvent> }) => void;
+  onLogin?: DOMAttributes<HTMLElement>['onClick'];
 }
 
 const Menu: FC<MenuProps> = ({
@@ -30,6 +31,7 @@ const Menu: FC<MenuProps> = ({
   onClick,
   onChangeNightMode,
   isNightMode = false,
+  onLogin,
 }) => {
   const [term, setTerm] = useState('');
 
@@ -71,8 +73,10 @@ const Menu: FC<MenuProps> = ({
         </form>
       </div>
       <div className={styles.body}>
-        <Switch checked={isNightMode} onChange={onChangeNightMode} /> &nbsp;
-        <MenuItem href="#">Login</MenuItem>
+        <Switch checked={isNightMode} onChange={onChangeNightMode} nightModeBlacklist="all" /> &nbsp;
+        <Button onClick={onLogin} backgroundColor="transparent" fontSize={18} style={{ cursor: 'pointer' }}>
+          Login
+        </Button>
       </div>
     </View>
   );

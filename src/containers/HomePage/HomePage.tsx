@@ -1,5 +1,4 @@
 import GridGeneric from 'components/GridGeneric/GridGeneric';
-import Aaa from 'components/test';
 import Navigation from 'containers/Navigation/Navigation';
 import React, { FC } from 'react';
 import { useSelector } from 'react-redux';
@@ -29,9 +28,6 @@ const HomePage: FC = () => {
   return (
     <div>
       <Navigation />
-      <h1>
-        <Aaa />
-      </h1>
       <button onClick={handleGetTodolist}>Get todolist</button>
       <h2>Grid generic type</h2>
       {renderTodolist()}

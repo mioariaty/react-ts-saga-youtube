@@ -3,7 +3,6 @@ import Navigation from 'containers/Navigation/Navigation';
 import { VideoDocument } from 'models/Videos';
 import React, { FC, useEffect } from 'react';
 import { useSelector } from 'react-redux';
-import { useHistory } from 'react-router';
 import { Endpoint } from 'types/endpoint';
 import { GridSmart, ProgressLoader, Text, View } from 'wiloke-react-core';
 import { useGetChannelByIdRequest } from './actions/getChannelByIdAction';
@@ -15,7 +14,6 @@ import { videoSelector } from './selectors';
 import SkeletonYoutubeCard from './SkeletonYoutubeCard';
 
 const YoutubePage: FC = () => {
-  const history = useHistory();
   const videoList = useSelector(videoSelector);
 
   const getVideoListRequest = useGetVideosRequest();
@@ -29,20 +27,18 @@ const YoutubePage: FC = () => {
     //eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  const _handleVideoPlayer = (videoId: VideoDocument['id'], channelId: VideoDocument['snippet']['channelId']) => {
-    return () => {
-      getVideoPlayer({ endpoint: Endpoint.VIDEOS, videoId: videoId, channelId: channelId });
-      getRelatedVideo({ endpoint: Endpoint.SEARCH, videoId: videoId });
-      getComments({ endpoint: Endpoint.COMMENT_THREAD, videoId: videoId });
-      getChannels({ endpoint: Endpoint.CHANNELS, channelId: channelId });
-      history.push(`/youtube/watch?v=${videoId}`);
-    };
+  const _handleVideoPlayer = (videoId: VideoDocument['id'], channelId: VideoDocument['snippet']['channelId']) => async () => {
+    await getVideoPlayer({ endpoint: Endpoint.VIDEOS, videoId: videoId, channelId: channelId });
+    await getRelatedVideo({ endpoint: Endpoint.SEARCH, videoId: videoId });
+    await getComments({ endpoint: Endpoint.COMMENT_THREAD, videoId: videoId });
+    await getChannels({ endpoint: Endpoint.CHANNELS, channelId: channelId });
   };
 
   const _renderList = (item: VideoDocument) => {
     return (
       <YoutubeCard
         key={item.id}
+        id={item.id}
         channel={item.snippet.channelTitle}
         duration={item.contentDetails?.duration}
         uri={item.snippet.thumbnails.medium.url}
@@ -59,7 +55,7 @@ const YoutubePage: FC = () => {
       return (
         <>
           <ProgressLoader done={videoList.isLoading} color="danger" containerClassName="progressBar" />
-          <SkeletonYoutubeCard item={8} isList={false} />
+          <SkeletonYoutubeCard item={8} />
         </>
       );
     }
@@ -72,16 +68,18 @@ const YoutubePage: FC = () => {
       );
     }
 
-    return videoList.data.map(_renderList);
+    return (
+      <GridSmart columnWidth={350} columnCount={5} columnGap={16}>
+        {videoList.data.map(_renderList)}
+      </GridSmart>
+    );
   };
 
   return (
     <>
       <Navigation />
       <View style={{ marginTop: 76 }} tagName="div">
-        <GridSmart columnWidth={350} columnCount={5} columnGap={16}>
-          {renderVideoList()}
-        </GridSmart>
+        {renderVideoList()}
       </View>
     </>
   );

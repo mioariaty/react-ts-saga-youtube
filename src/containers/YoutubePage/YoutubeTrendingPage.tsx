@@ -40,6 +40,7 @@ const YoutubeTrendingPage: FC = () => {
     return (
       <YoutubeCard
         key={item.id}
+        id={item.id}
         channel={item.snippet.channelTitle}
         duration={item.contentDetails?.duration}
         uri={item.snippet.thumbnails.medium.url}

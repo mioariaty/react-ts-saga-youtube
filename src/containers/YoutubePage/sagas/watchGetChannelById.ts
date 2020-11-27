@@ -17,6 +17,7 @@ function* handleGetChannelByIdRequest({ payload }: ReturnType<typeof getChannelB
         id: payload.channelId,
       },
     });
+
     yield put(getChannelByIdAction.success({ data: response.data }));
   } catch (error) {
     yield put(getChannelByIdAction.failure({ message: error.message }));

@@ -2,6 +2,7 @@ import TimeAgo from 'javascript-time-ago';
 import en from 'javascript-time-ago/locale/en';
 import { VideoDocument } from 'models/Videos';
 import React, { CSSProperties, DOMAttributes, FC } from 'react';
+import { Link } from 'react-router-dom';
 import convertTime from 'utils/functions/formatTime';
 import { formatShortString } from 'utils/functions/formatViewCount';
 import { Image, Text, View } from 'wiloke-react-core';
@@ -17,52 +18,67 @@ export interface YoutubeCardProps {
   viewCount?: VideoDocument['statistics']['viewCount'];
   className?: string;
   style?: CSSProperties;
+  id: VideoDocument['id'];
   isVertical?: boolean;
   onClick?: DOMAttributes<HTMLElement>['onClick'];
 }
 TimeAgo.addLocale(en);
 const time: TimeAgo = new TimeAgo();
 
-const YoutubeCard: FC<YoutubeCardProps> = ({ channel, duration, title, uri, className, style, timeAgo, viewCount, isVertical = false, onClick }) => {
+const YoutubeCard: FC<YoutubeCardProps> = ({
+  channel,
+  duration,
+  title,
+  uri,
+  className,
+  style,
+  timeAgo,
+  viewCount,
+  isVertical = false,
+  onClick,
+  id,
+}) => {
   const vertical = isVertical ? styles.vertical : '';
   const combineProps = { style, className: classNames(styles.container, className, vertical) };
   return (
-    <View {...combineProps} tagName="div" style={{ backgroundColor: 'transparent' }} onClick={onClick}>
-      <View className={styles.thumbnailContainer} tagName="div">
-        <Image src={uri} aspectRatioInPercent={56.25} lazyLoad />
-        <Text className={styles.dutation} tagName="p" color="light" nightModeBlacklist="color">
-          {convertTime(String(duration))}
-        </Text>
-      </View>
-
-      <View tachyons={['flex', 'relative', 'ma0', 'flex-column']} tagName="div" className={styles.detail}>
-        <View className={styles.meta} tagName="div">
-          <Text color="dark" tagName="h3" className={styles.title}>
-            {title}
-          </Text>
-          <Text color="dark3" tagName="p" className={styles.channel} tachyons="mb2">
-            {channel}
+    <Link to={{ pathname: `/youtube/watch?v=${id}` as any }} style={{ textDecoration: 'none' }}>
+      <View {...combineProps} tagName="div" style={{ backgroundColor: 'transparent' }} onClick={onClick}>
+        <View className={styles.thumbnailContainer} tagName="div">
+          <Image src={uri} aspectRatioInPercent={56.25} lazyLoad />
+          <Text className={styles.dutation} tagName="p" color="light" nightModeBlacklist="color">
+            {convertTime(String(duration))}
           </Text>
         </View>
-        <View tagName="div" tachyons={['flex', 'flex-row', 'items-center']}>
-          {viewCount && (
-            <Text color="dark4" tagName="p" className={styles.view}>
-              {formatShortString(String(viewCount))} views
-            </Text>
-          )}
 
-          {viewCount && (
-            <Text color="dark" style={{ opacity: '0.7' }}>
-              &nbsp; • &nbsp;
+        <View tachyons={['flex', 'relative', 'ma0', 'flex-column']} tagName="div" className={styles.detail}>
+          <View className={styles.meta} tagName="div">
+            <Text color="dark" tagName="h3" className={styles.title}>
+              {title}
             </Text>
-          )}
+            <Text color="dark3" tagName="p" className={styles.channel} tachyons="mb2">
+              {channel}
+            </Text>
+          </View>
+          <View tagName="div" tachyons={['flex', 'flex-row', 'items-center']}>
+            {viewCount && (
+              <Text color="dark4" tagName="p" className={styles.view}>
+                {formatShortString(String(viewCount))} views
+              </Text>
+            )}
 
-          <Text color="dark4" tagName="p" className={styles.time}>
-            {time.format(new Date(String(timeAgo)))}
-          </Text>
+            {viewCount && (
+              <Text color="dark" style={{ opacity: '0.7' }}>
+                &nbsp; • &nbsp;
+              </Text>
+            )}
+
+            <Text color="dark4" tagName="p" className={styles.time}>
+              {time.format(new Date(String(timeAgo)))}
+            </Text>
+          </View>
         </View>
       </View>
-    </View>
+    </Link>
   );
 };
 

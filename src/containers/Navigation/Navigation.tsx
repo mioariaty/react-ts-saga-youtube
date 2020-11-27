@@ -18,6 +18,7 @@ const Navigation: FC<NavigationProps> = () => {
   const history = useHistory();
   const getNightMode = useNightModeAction();
   const getSearchedVideo = useSearchVideosRequest();
+  // const getLoginRequest = useLoginRequest();
 
   const _handleCloseSideDrawer = () => {
     setDrawerOpen(drawerOpen => !drawerOpen);
@@ -32,6 +33,11 @@ const Navigation: FC<NavigationProps> = () => {
     getNightMode(isNightMode);
   };
 
+  const _handleLogin = () => {
+    console.log('clicked');
+    // getLoginRequest({ endpoint: null });
+  };
+
   return (
     <View>
       <SideDrawer open={drawerOpen} onClose={_handleCloseSideDrawer} />
@@ -42,6 +48,7 @@ const Navigation: FC<NavigationProps> = () => {
         onClick={_handleCloseSideDrawer}
         isNightMode={isNightMode}
         onChangeNightMode={_handleToggleNightMode}
+        onLogin={_handleLogin}
       />
     </View>
   );

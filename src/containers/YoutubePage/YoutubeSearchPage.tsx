@@ -31,6 +31,7 @@ const YoutubeSearchPage: FC = () => {
     return (
       <YoutubeCard
         isVertical
+        id={videoId}
         key={videoId}
         channel={channelTitle}
         title={title}

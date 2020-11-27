@@ -1,4 +1,4 @@
-import React, { InputHTMLAttributes, FC } from 'react';
+import React, { FC, InputHTMLAttributes } from 'react';
 import styles from './Input.module.scss';
 
 type Size = 'small' | 'medium' | 'large';
@@ -12,6 +12,6 @@ export interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
 }
 
 const Input: FC<InputProps> = ({ sizeInput = 'medium', onChange, ...rest }) => {
-  return <input {...rest} onChange={onChange} className={[styles.container, styles[sizeInput]].join(' ')} />;
+  return <input {...rest} onChange={onChange} className={[styles.container, styles[sizeInput]].join(' ')} placeholder="Do something..." />;
 };
 export default Input;

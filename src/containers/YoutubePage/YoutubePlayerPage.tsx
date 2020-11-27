@@ -4,11 +4,12 @@ import VideoPlayerMeta from 'components/Youtube/VideoPlayerMeta';
 import YoutubeCard from 'components/Youtube/YoutubeCard/YoutubeCard';
 import VideoPlayer from 'components/Youtube/YoutubePlayer';
 import Navigation from 'containers/Navigation/Navigation';
+import { ChannelDoucment } from 'models/Channels';
 import { CommentThreadDocument } from 'models/Comments';
 import { VideoDocument, VideoSearchedDoc } from 'models/Videos';
 import React, { FC, useEffect } from 'react';
 import { useSelector } from 'react-redux';
-import { useHistory } from 'react-router';
+import { useHistory, useParams } from 'react-router';
 import { Endpoint } from 'types/endpoint';
 import { ActivityIndicator, ProgressLoader, Text, View } from 'wiloke-react-core';
 import { useGetChannelByIdRequest } from './actions/getChannelByIdAction';
@@ -18,14 +19,20 @@ import { useGetVideoByIdRequest } from './actions/getVideoByIdAction';
 import { channelSelector, commentSelector, videoSearchSelector, videoSelector } from './selectors';
 import SkeletonYoutubeCard from './SkeletonYoutubeCard';
 
+interface Params {
+  id: string;
+}
+
 const YoutubePlayerPage: FC = () => {
   const history = useHistory();
   const videoPlayer = useSelector(videoSelector);
   const relatedVideos = useSelector(videoSearchSelector);
   const commentThreads = useSelector(commentSelector);
   const channelById = useSelector(channelSelector);
-
   const { videoId, channelId } = videoPlayer;
+
+  const { id } = useParams<Params>();
+
   const getVideoPlayer = useGetVideoByIdRequest();
   const getComments = useGetCommentThreadsRequest();
   const getRelatedVideoRequest = useGetRelatedVideoRequest();
@@ -34,12 +41,12 @@ const YoutubePlayerPage: FC = () => {
   useEffect(() => {
     getComments({ endpoint: Endpoint.COMMENT_THREAD, videoId: videoId });
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [videoId]);
+  }, [id]);
 
   useEffect(() => {
     getRelatedVideoRequest({ endpoint: Endpoint.SEARCH, videoId: videoId });
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [videoId]);
+  }, [id]);
 
   useEffect(() => {
     getChannelByIdRequest({ endpoint: Endpoint.CHANNELS, channelId: channelId });
@@ -118,8 +125,9 @@ const YoutubePlayerPage: FC = () => {
     const { videoId } = item.id;
     return (
       <YoutubeCard
+        id={videoId}
         isVertical
-        key={videoId}
+        key={id}
         channel={channelTitle}
         title={title}
         uri={thumbnails.medium.url}
@@ -142,6 +150,12 @@ const YoutubePlayerPage: FC = () => {
     return relatedVideos.data.map(_renderListSearch);
   };
 
+  const _renderChannel = (item: ChannelDoucment) => {
+    return (
+      <VideoPlayerChannel avatar={item.snippet.thumbnails.default.url} title={item.snippet.title} followCounts={item.statistics.subscriberCount} />
+    );
+  };
+
   const _renderChannelRequest = () => {
     if (channelById.isLoading) {
       return <SkeletonYoutubeCard item={1} isList />;
@@ -149,10 +163,8 @@ const YoutubePlayerPage: FC = () => {
     if (channelById.message) {
       return <Text>{channelById.message}</Text>;
     }
-    console.log(channelById.data);
-    return channelById.data.map(item => (
-      <VideoPlayerChannel avatar={item.snippet.thumbnails.default.url} title={item.snippet.title} followCounts={item.statistics.subscriberCount} />
-    ));
+    // return <div>a</div>;
+    return channelById.data.map(_renderChannel);
   };
   return (
     <>
