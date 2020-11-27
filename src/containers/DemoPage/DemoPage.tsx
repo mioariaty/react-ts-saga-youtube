@@ -1,27 +1,21 @@
-import Button from 'components/Button/Button';
 import Field from 'components/Field';
 import Input from 'components/Input/Input';
-import Tabs from 'components/Tabs';
-import TabContent from 'components/Tabs/TabContent';
+import Section from 'components/Section/Section';
 import Navigation from 'containers/Navigation/Navigation';
 import React from 'react';
+import { View } from 'wiloke-react-core';
 
 const AboutPage = () => {
   return (
-    <div>
+    <Section>
       <Navigation />
-      <h1>AboutPage</h1>
-      <Button borderRaius={20}>asdas</Button>
-      <Tabs>
-        <TabContent title="Lemon">Lemon is yellow</TabContent>
-        <TabContent title="Strawberry">Strawberry is red</TabContent>
-        <TabContent title="Pear">Pear is green</TabContent>
-      </Tabs>
 
-      <Field label="hahahah" tachyons="mt3">
-        <Input />
-      </Field>
-    </div>
+      <View style={{ maxWidth: 550, minHeight: 800, border: '1px solid gray', padding: 20, borderRadius: 20 }}>
+        <Field color="danger" label={{ text: 'Alo', link: <a href="#">aaa</a> }} tachyons="mt3">
+          <Input borderRadius={5} />
+        </Field>
+      </View>
+    </Section>
   );
 };
 
