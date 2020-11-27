@@ -1,7 +1,7 @@
 import { ComponentType } from 'react';
 
 export interface HomePageLocationState {}
-export interface AboutPageLocationState {}
+export interface DemoPageLocationState {}
 export interface YoutubePageLocationState {}
 export interface YoutubeSearchPageLocationState {}
 export interface VideoPlayerPageLocationState {}
@@ -9,7 +9,7 @@ export interface YoutubeTrendingpageLocationState {}
 
 export interface LocationStates {
   '/'?: HomePageLocationState;
-  '/about': AboutPageLocationState;
+  '/demo': DemoPageLocationState;
   '/youtube': YoutubePageLocationState;
   '/trending': YoutubeTrendingpageLocationState;
   '/search': YoutubeSearchPageLocationState;

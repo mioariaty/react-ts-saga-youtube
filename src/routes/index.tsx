@@ -1,4 +1,4 @@
-import AboutPage from 'containers/AboutPage/AboutPage';
+import DemoPage from 'containers/DemoPage/DemoPage';
 import HomePage from 'containers/HomePage/HomePage';
 import NotFoundPage from 'containers/NotFoundPage/NotFoundPage';
 import YoutubePage from 'containers/YoutubePage/YoutubePage';
@@ -18,10 +18,10 @@ export const pages: Page[] = [
     name: 'Home',
   },
   {
-    path: '/about',
+    path: '/demo',
     exact: true,
-    component: AboutPage,
-    name: 'About',
+    component: DemoPage,
+    name: 'Demo',
   },
   {
     path: '/youtube',
